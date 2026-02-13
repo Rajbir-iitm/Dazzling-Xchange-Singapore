@@ -188,7 +188,7 @@ const SalesModal = () => {
               ) : (
                 <>
                   <h2 className="text-xl font-semibold mb-6 text-white pr-8">
-                    Open Account
+                    Contact Us
                   </h2>
                   {/* Form fields */}
                   <div className="space-y-4">

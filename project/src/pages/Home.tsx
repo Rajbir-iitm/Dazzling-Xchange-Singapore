@@ -64,7 +64,7 @@ function Home() {
       >
         <button
           className="px-6 py-3 bg-secondary text-neutral-900 rounded-full font-medium font-primary shadow-lg hover:scale-105 hover:shadow-glow-primary transition-all duration-300 animate-pulse-subtle"
-          onClick={() => window.open('https://odazzlingxchangeptyltd.ebury.com/login/?next=/', '_blank')}
+          onClick={() => window.open('https://customer.dazzlingxchange.com/', '_blank')}
         >
           {t('hero.login')}
         </button>
