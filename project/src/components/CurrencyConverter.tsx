@@ -9,7 +9,6 @@ const currencies = [
   { code: 'EUR', name: 'Euro', symbol: '€', flag: '🇪🇺' },
   { code: 'GBP', name: 'British Pound', symbol: '£', flag: '🇬🇧' },
   { code: 'JPY', name: 'Japanese Yen', symbol: '¥', flag: '🇯🇵' },
-  { code: 'INR', name: 'Indian Rupee', symbol: '₹', flag: '🇮🇳' },
   { code: 'CAD', name: 'Canadian Dollar', symbol: 'C$', flag: '🇨🇦' },
   { code: 'AUD', name: 'Australian Dollar', symbol: 'A$', flag: '🇦🇺' },
   { code: 'CNY', name: 'Chinese Yuan', symbol: '¥', flag: '🇨🇳' },
@@ -33,7 +32,7 @@ interface HistoricalDataPoint {
 const CurrencyConverter: React.FC = () => {
   const { t } = useTranslation();
   const [fromCurrency, setFromCurrency] = useState('USD');
-  const [toCurrency, setToCurrency] = useState('INR');
+  const [toCurrency, setToCurrency] = useState('SGD');
   const [exchangeRate, setExchangeRate] = useState<ExchangeRateData | null>(null);
   const [historicalData, setHistoricalData] = useState<HistoricalDataPoint[]>([]);
   const [selectedPeriod, setSelectedPeriod] = useState<'7D' | '30D'>('7D');
