@@ -54,7 +54,7 @@ function SidebarComponent({ onOpenSettings }: SidebarProps) {
       icon: (
         <Briefcase 
           className={cn(
-            'w-6 h-6 transition-colors duration-200',
+            'w-8 h-8 transition-colors duration-200',
             isActive('/services') 
               ? 'text-[#16d68f]' 
               : 'text-white group-hover/sidebar:text-[#16d68f]'

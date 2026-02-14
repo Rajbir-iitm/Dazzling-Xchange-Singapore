@@ -114,7 +114,7 @@ function Services() {
       </section>
 
       {/* ─── THE JOURNEY (Horizontal Steps) ─── */}
-      <section className="py-20 px-6 lg:px-16 relative">
+      <section className="pt-36 pb-20 px-6 lg:px-16 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div className="mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }}>
@@ -126,29 +126,45 @@ function Services() {
             </motion.h2>
           </motion.div>
 
-          {/* Horizontal scrollable steps on mobile, grid on desktop */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { icon: Smartphone, num: '01', title: 'Register', desc: 'Sign up with your phone number. Verify via OTP. Create your secure account.' },
-              { icon: ScanFace, num: '02', title: 'Verify Identity', desc: 'Complete KYC through ONFIDO — document upload and facial recognition.' },
-              { icon: Wallet, num: '03', title: 'Activate Wallet', desc: 'Unlock your FlexM wallet with OTP. Top up through PayNow.' },
-              { icon: Send, num: '04', title: 'Send Money', desc: 'Choose Bank Transfer or Wallet. Review rates. Confirm and track.' },
-            ].map((step, i) => {
-              const Icon = step.icon;
-              return (
-                <motion.div
-                  key={step.num}
-                  className="glass-card glass-card-hover rounded-2xl p-6 transition-all duration-300 relative group"
-                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }} viewport={{ once: true }}
-                >
-                  <span className="text-5xl font-bold text-white absolute top-4 right-5">{step.num}</span>
-                  <Icon className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition-transform" strokeWidth={1.5} />
-                  <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-                  <p className="text-neutral-400 text-sm leading-relaxed">{step.desc}</p>
-                </motion.div>
-              );
-            })}
+          {/* Steps — vertical timeline */}
+          <div className="relative">
+            {/* Vertical connector line */}
+            <div className="hidden lg:block absolute left-[39px] top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 via-primary/20 to-transparent" />
+
+            <div className="space-y-8 lg:space-y-0">
+              {[
+                { icon: Smartphone, num: '01', title: 'Register', desc: 'Sign up with your phone number, verify via OTP, and create your secure Individual or Business account — all in under two minutes.' },
+                { icon: ScanFace, num: '02', title: 'Verify Identity', desc: 'Complete KYC through ONFIDO with document upload and facial recognition. Your verified status unlocks your wallet instantly.' },
+                { icon: Wallet, num: '03', title: 'Activate Wallet', desc: 'Unlock your FlexM digital wallet with a single OTP. Top up through PayNow QR — funds credited within 30 minutes.' },
+                { icon: Send, num: '04', title: 'Send Money', desc: 'Choose Bank Transfer or FlexM Wallet. Review live exchange rates and fees. Confirm your transfer and track it in real time.' },
+              ].map((step, i) => {
+                const Icon = step.icon;
+                return (
+                  <motion.div
+                    key={step.num}
+                    className="relative flex gap-6 lg:gap-10 items-start group lg:py-10"
+                    initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.12, duration: 0.6 }} viewport={{ once: true }}
+                  >
+                    {/* Step indicator */}
+                    <div className="relative z-10 flex-shrink-0">
+                      <div className="w-20 h-20 rounded-2xl bg-neutral-900 border border-neutral-800 group-hover:border-primary/40 flex items-center justify-center transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(0,208,132,0.15)]">
+                        <Icon className="w-9 h-9 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-1 glass-card rounded-2xl p-8 group-hover:border-primary/20 transition-all duration-300 min-h-[140px]">
+                      <div className="flex items-center justify-between mb-3">
+                        <h3 className="text-xl lg:text-2xl font-bold text-white">{step.title}</h3>
+                        <span className="text-4xl lg:text-5xl font-bold text-white group-hover:text-primary transition-colors duration-300">{step.num}</span>
+                      </div>
+                      <p className="text-neutral-400 text-base leading-relaxed max-w-xl">{step.desc}</p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
