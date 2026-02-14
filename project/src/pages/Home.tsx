@@ -352,13 +352,13 @@ function Home() {
         <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
 
         <motion.div
-          className="container mx-auto relative z-10"
+          className="container mx-auto relative z-10 text-center"
           initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
-          <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl">
+          <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl mx-auto">
             Ready to send your<br /><span className="gradient-text">first transfer?</span>
           </motion.h2>
-          <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6 max-w-2xl">
+          <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6 max-w-2xl mx-auto">
             Join thousands of customers who trust Dazzling Xchange for their international payments.
           </motion.p>
           <motion.div variants={fadeUp} custom={2} className="flex flex-wrap justify-center gap-4 mt-10">
