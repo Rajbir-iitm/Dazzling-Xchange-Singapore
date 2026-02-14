@@ -18,31 +18,33 @@ const fadeUp = {
   })
 };
 
+const stepIcons = [UserPlus, ScanFace, Wallet, Send];
+
 function Home() {
   const { t } = useTranslation();
   const openSalesModal = useSalesModalStore((state) => state.openModal);
   const { ref: statsRef, inView: statsInView } = useInView({ threshold: 0.3, triggerOnce: true });
 
-  const marqueeItems = [
-    'OTP Registration', 'ONFIDO KYC', 'Wallet Activation', 'Bank Transfer',
-    'FlexM Wallet', 'PayNow Top-Up', 'Receiver Management', 'Transaction Tracking',
-    'Multi-Currency', 'Real-Time Rates', 'Receipt Download', '24/7 Support',
-  ];
+  const marqueeItems = Array.from({ length: 12 }, (_, i) => t(`home.marquee.${i}`));
 
-  const steps = [
-    { icon: UserPlus, num: '01', title: 'Register in Minutes', desc: 'Sign up as an Individual or Business with your phone number. Verify your identity via a secure one-time password sent directly to you.' },
-    { icon: ScanFace, num: '02', title: 'Verify with ONFIDO', desc: 'Complete your KYC through ONFIDO — upload your documents, complete facial recognition, and get verified seamlessly.' },
-    { icon: Wallet, num: '03', title: 'Unlock Your Wallet', desc: 'Once verified, activate your FlexM digital wallet with a single OTP. Top up via PayNow and you\'re ready to transact.' },
-    { icon: Send, num: '04', title: 'Send Money Globally', desc: 'Choose Bank Transfer or FlexM Wallet, select a receiver, review live rates and fees, and confirm your international transfer.' },
-  ];
+  const steps = stepIcons.map((icon, i) => ({
+    icon,
+    num: String(i + 1).padStart(2, '0'),
+    title: t(`home.steps.${i}.title`),
+    desc: t(`home.steps.${i}.desc`),
+  }));
 
-  const testimonials = [
-    { name: 'Sarah M.', text: 'Signed up and completed KYC in under ten minutes. My wallet was active the same day and I sent my first transfer that evening.', image: 'https://randomuser.me/api/portraits/women/44.jpg' },
-    { name: 'John D.', text: 'The Bank Transfer option is incredibly smooth. I reviewed the rates, confirmed, and received an email confirmation within 15 minutes.', image: 'https://randomuser.me/api/portraits/men/32.jpg' },
-    { name: 'Priya S.', text: 'Managing my receivers is so easy — I saved all my family members and can send money to anyone in just a few clicks.', image: 'https://randomuser.me/api/portraits/women/68.jpg' },
-    { name: 'Carlos R.', text: 'Transparent fees and real-time exchange rates. I always know exactly what I\'m paying before I confirm. No surprises.', image: 'https://randomuser.me/api/portraits/men/65.jpg' },
-    { name: 'Emily T.', text: 'The FlexM Wallet top-up through PayNow is brilliant. Funds were in my wallet within 30 minutes and I could send money right away.', image: 'https://randomuser.me/api/portraits/women/12.jpg' },
-  ];
+  const testimonials = Array.from({ length: 5 }, (_, i) => ({
+    name: t(`home.testimonials.${i}.name`),
+    text: t(`home.testimonials.${i}.text`),
+    image: [
+      'https://randomuser.me/api/portraits/women/44.jpg',
+      'https://randomuser.me/api/portraits/men/32.jpg',
+      'https://randomuser.me/api/portraits/women/68.jpg',
+      'https://randomuser.me/api/portraits/men/65.jpg',
+      'https://randomuser.me/api/portraits/women/12.jpg',
+    ][i],
+  }));
 
   const allTestimonials = [
     ...testimonials.map((t, i) => ({ ...t, id: `a-${i}` })),
@@ -67,12 +69,12 @@ function Home() {
             <div className="space-y-8">
               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
                 <h2 className="text-2xl md:text-3xl font-bold tracking-tight gradient-text mb-6 whitespace-nowrap">
-                  DAZZLING XCHANGE
+                  {t('home.brand')}
                 </h2>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight">
-                  <span className="text-white">Send Money</span><br />
-                  <span className="gradient-text">Across Borders,</span><br />
-                  <span className="text-white">Effortlessly.</span>
+                  <span className="text-white">{t('home.hero.line1')}</span><br />
+                  <span className="gradient-text">{t('home.hero.line2')}</span><br />
+                  <span className="text-white">{t('home.hero.line3')}</span>
                 </h1>
               </motion.div>
 
@@ -80,7 +82,7 @@ function Home() {
                 className="text-neutral-400 text-lg lg:text-xl max-w-xl leading-relaxed"
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.6 }}
               >
-                Register, verify your identity, and start sending money internationally — via our Customer Portal or mobile app. Bank Transfer or FlexM Wallet. You choose.
+                {t('home.hero.description')}
               </motion.p>
 
               <motion.div
@@ -140,10 +142,10 @@ function Home() {
         <div className="max-w-6xl mx-auto">
           <motion.div className="mb-20" initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">
-              How It Works
+              {t('home.howItWorks.label')}
             </motion.span>
             <motion.h2 variants={fadeUp} custom={1} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mt-4 max-w-3xl">
-              Four steps to your<br /><span className="gradient-text">first international transfer.</span>
+              {t('home.howItWorks.title')}<br /><span className="gradient-text">{t('home.howItWorks.titleHighlight')}</span>
             </motion.h2>
           </motion.div>
 
@@ -189,10 +191,10 @@ function Home() {
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div className="mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">
-              Why Dazzling Xchange
+              {t('home.features.label')}
             </motion.span>
             <motion.h2 variants={fadeUp} custom={1} className="text-3xl md:text-5xl font-bold text-white mt-4">
-              Built for trust.<br /><span className="gradient-text">Designed for speed.</span>
+              {t('home.features.title')}<br /><span className="gradient-text">{t('home.features.titleHighlight')}</span>
             </motion.h2>
           </motion.div>
 
@@ -204,9 +206,9 @@ function Home() {
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             >
               <Shield className="w-10 h-10 text-primary mb-5" strokeWidth={1.5} />
-              <h3 className="text-2xl font-bold text-white mb-3">Licensed & ONFIDO-Verified Security</h3>
+              <h3 className="text-2xl font-bold text-white mb-3">{t('home.features.security.title')}</h3>
               <p className="text-neutral-400 text-base leading-relaxed max-w-lg">
-                Licensed under PSO (PS20200465) by the Monetary Authority of Singapore. Every account is verified through ONFIDO's document and facial recognition technology. OTP authentication, password enforcement, and duplicate prevention safeguard your identity.
+                {t('home.features.security.desc')}
               </p>
             </motion.div>
 
@@ -217,9 +219,9 @@ function Home() {
             >
               <Zap className="w-10 h-10 text-primary mb-5" strokeWidth={1.5} />
               <div>
-                <h3 className="text-xl font-bold text-white mb-2">Instant Rates & Fees</h3>
+                <h3 className="text-xl font-bold text-white mb-2">{t('home.features.rates.title')}</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed">
-                  Exchange rates update live as you type. Fees are displayed upfront — no surprises, no hidden charges.
+                  {t('home.features.rates.desc')}
                 </p>
               </div>
             </motion.div>
@@ -230,9 +232,9 @@ function Home() {
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} viewport={{ once: true }}
             >
               <Eye className="w-10 h-10 text-primary mb-5" strokeWidth={1.5} />
-              <h3 className="text-xl font-bold text-white mb-2">Full Transaction Visibility</h3>
+              <h3 className="text-xl font-bold text-white mb-2">{t('home.features.visibility.title')}</h3>
               <p className="text-neutral-400 text-sm leading-relaxed">
-                Track every transfer — Pending, Processing, Completed. Sort, filter, export, and download receipts anytime.
+                {t('home.features.visibility.desc')}
               </p>
             </motion.div>
 
@@ -242,21 +244,21 @@ function Home() {
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} viewport={{ once: true }}
             >
               <Users className="w-10 h-10 text-primary mb-5" strokeWidth={1.5} />
-              <h3 className="text-xl font-bold text-white mb-2">24/7 Dedicated Support</h3>
+              <h3 className="text-xl font-bold text-white mb-2">{t('home.features.support.title')}</h3>
               <p className="text-neutral-400 text-sm leading-relaxed">
-                Our support team is available around the clock. Every issue is acknowledged and resolved within 24 hours.
+                {t('home.features.support.desc')}
               </p>
             </motion.div>
 
-            {/* Wide card — spans 1 col but impactful */}
+            {/* Wide card */}
             <motion.div
               className="glass-card glass-card-hover rounded-3xl p-8 transition-all duration-300"
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} viewport={{ once: true }}
             >
               <Wallet className="w-10 h-10 text-primary mb-5" strokeWidth={1.5} />
-              <h3 className="text-xl font-bold text-white mb-2">Dual Payment Channels</h3>
+              <h3 className="text-xl font-bold text-white mb-2">{t('home.features.payments.title')}</h3>
               <p className="text-neutral-400 text-sm leading-relaxed">
-                Bank Transfer — confirmed within 15 minutes. FlexM Wallet — instant processing. Top up via PayNow QR.
+                {t('home.features.payments.desc')}
               </p>
             </motion.div>
           </div>
@@ -270,10 +272,10 @@ function Home() {
 
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-center relative z-10">
           {[
-            { value: 130, prefix: '$', suffix: 'B+', label: 'Cross-Border Transfers' },
-            { value: 1, suffix: 'M+', label: 'Registered Users' },
-            { value: 130, suffix: '+', label: 'Countries Supported' },
-            { value: 24, suffix: '/7', label: 'Customer Support' },
+            { value: 130, prefix: '$', suffix: 'B+', label: t('home.stats.transfers') },
+            { value: 1, suffix: 'M+', label: t('home.stats.users') },
+            { value: 130, suffix: '+', label: t('home.stats.countries') },
+            { value: 24, suffix: '/7', label: t('home.stats.support') },
           ].map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -302,17 +304,17 @@ function Home() {
           initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
           <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl">
-            See the portal & app<br /><span className="gradient-text">in action.</span>
+            {t('home.portal.title')}<br /><span className="gradient-text">{t('home.portal.titleHighlight')}</span>
           </motion.h2>
           <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6 max-w-2xl">
-            Walk through every screen — from registration and KYC verification to sending your first transfer. No guesswork.
+            {t('home.portal.description')}
           </motion.p>
           <motion.div variants={fadeUp} custom={2} className="mt-10">
             <Link
               to="/walkthrough"
               className="group inline-flex items-center gap-3 px-10 py-5 bg-neutral-900 border border-neutral-800 text-white rounded-full font-semibold text-lg hover:border-primary/40 hover:shadow-[0_0_40px_rgba(0,208,132,0.15)] transition-all duration-300"
             >
-              Explore the Walkthrough
+              {t('home.portal.cta')}
               <ChevronRight className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
@@ -325,7 +327,7 @@ function Home() {
           className="text-3xl lg:text-4xl font-bold text-white mb-16 px-6 lg:px-16 container mx-auto"
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
         >
-          Trusted by customers <span className="gradient-text">worldwide.</span>
+          {t('home.testimonials.title')} <span className="gradient-text">{t('home.testimonials.titleHighlight')}</span>
         </motion.h2>
 
         <div className="testimonial-carousel-wrapper">
@@ -356,24 +358,24 @@ function Home() {
           initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
           <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl mx-auto">
-            Ready to send your<br /><span className="gradient-text">first transfer?</span>
+            {t('home.cta.title')}<br /><span className="gradient-text">{t('home.cta.titleHighlight')}</span>
           </motion.h2>
           <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6 max-w-2xl mx-auto">
-            Join thousands of customers who trust Dazzling Xchange for their international payments.
+            {t('home.cta.description')}
           </motion.p>
           <motion.div variants={fadeUp} custom={2} className="flex flex-wrap justify-center gap-4 mt-10">
             <button
               onClick={() => window.open('https://customer.dazzlingxchange.com/', '_blank')}
               className="group flex items-center gap-2 px-10 py-5 bg-primary text-neutral-950 rounded-full font-semibold text-lg hover:shadow-[0_0_40px_rgba(0,208,132,0.4)] transition-all duration-300 hover:scale-[1.02]"
             >
-              Open Customer Portal
+              {t('home.cta.portal')}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <button
               onClick={openSalesModal}
               className="px-10 py-5 border border-neutral-700 text-white rounded-full font-medium text-lg hover:border-primary/50 hover:text-primary transition-all duration-300"
             >
-              Contact Us
+              {t('home.cta.contact')}
             </button>
           </motion.div>
         </motion.div>

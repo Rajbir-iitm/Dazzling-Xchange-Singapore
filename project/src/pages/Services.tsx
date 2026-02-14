@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Smartphone, ScanFace, Wallet, Send, BarChart3, Users, Building, CreditCard, ChevronDown } from 'lucide-react';
 import Footer from '../components/Footer';
@@ -12,39 +13,49 @@ const fadeUp = {
   })
 };
 
+const stepIcons = [Smartphone, ScanFace, Wallet, Send];
+
 function Services() {
+  const { t } = useTranslation();
   const openSalesModal = useSalesModalStore((state) => state.openModal);
   const [activePayment, setActivePayment] = useState<'bank' | 'wallet'>('bank');
 
   const paymentMethods = {
     bank: {
-      title: 'Bank Transfer',
+      title: t('services.payment.bank.title'),
       icon: Building,
       features: [
-        'Review recipient banking details on screen',
-        'Make a wire transfer to the provided account',
-        'Payment confirmed within 15 minutes',
-        'Confirmation email sent by DX upon receipt',
-        'Transaction ID generated for tracking',
+        t('services.payment.bank.f1'),
+        t('services.payment.bank.f2'),
+        t('services.payment.bank.f3'),
+        t('services.payment.bank.f4'),
+        t('services.payment.bank.f5'),
       ],
-      highlight: '~15 min confirmation',
+      highlight: t('services.payment.bank.highlight'),
     },
     wallet: {
-      title: 'FlexM Wallet',
+      title: t('services.payment.wallet.title'),
       icon: CreditCard,
       features: [
-        'Pay directly from your wallet balance',
-        'Top up via PayNow QR — credited in 30 min',
-        'Instant deduction and processing',
-        'Insufficient balance triggers top-up prompt',
-        'Real-time balance updates after every payment',
+        t('services.payment.wallet.f1'),
+        t('services.payment.wallet.f2'),
+        t('services.payment.wallet.f3'),
+        t('services.payment.wallet.f4'),
+        t('services.payment.wallet.f5'),
       ],
-      highlight: 'Instant processing',
+      highlight: t('services.payment.wallet.highlight'),
     },
   };
 
   const active = paymentMethods[activePayment];
   const ActiveIcon = active.icon;
+
+  const journeySteps = stepIcons.map((icon, i) => ({
+    icon,
+    num: String(i + 1).padStart(2, '0'),
+    title: t(`services.journey.step${i + 1}.title`),
+    desc: t(`services.journey.step${i + 1}.desc`),
+  }));
 
   return (
     <div className="bg-black min-h-screen">
@@ -60,22 +71,22 @@ function Services() {
                 className="inline-block px-4 py-1.5 rounded-full text-sm font-medium border border-primary/30 text-primary bg-primary/5 mb-8"
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               >
-                Our Services
+                {t('services.hero.badge')}
               </motion.span>
 
               <motion.h1
                 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight"
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}
               >
-                <span className="text-white">One portal. One app.</span><br />
-                <span className="gradient-text">Complete control.</span>
+                <span className="text-white">{t('services.hero.line1')}</span><br />
+                <span className="gradient-text">{t('services.hero.line1Highlight')}</span>
               </motion.h1>
 
               <motion.p
                 className="text-neutral-400 text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed"
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
               >
-                From registration and identity verification to international transfers and transaction management — everything you need, designed for individuals and businesses.
+                {t('services.hero.description')}
               </motion.p>
 
               <motion.div
@@ -86,7 +97,7 @@ function Services() {
               </motion.div>
             </div>
 
-            {/* Right — Visual card that overlaps into next section */}
+            {/* Right — Visual card */}
             <motion.div
               className="relative lg:translate-y-8"
               initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }}
@@ -104,7 +115,7 @@ function Services() {
                         <Building className="w-16 h-16 text-primary/30 group-hover:text-primary/50 transition-colors duration-500" strokeWidth={1.5} />
                       </div>
                     </div>
-                    <p className="text-neutral-700 text-sm font-medium">Image Placeholder</p>
+                    <p className="text-neutral-700 text-sm font-medium">{t('services.hero.placeholder')}</p>
                   </div>
                 </div>
               </div>
@@ -113,31 +124,24 @@ function Services() {
         </div>
       </section>
 
-      {/* ─── THE JOURNEY (Horizontal Steps) ─── */}
+      {/* ─── THE JOURNEY ─── */}
       <section className="pt-36 pb-20 px-6 lg:px-16 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div className="mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">
-              Your Journey
+              {t('services.journey.label')}
             </motion.span>
             <motion.h2 variants={fadeUp} custom={1} className="text-3xl lg:text-5xl font-bold text-white mt-4">
-              Sign up to send — <span className="gradient-text">in four steps.</span>
+              {t('services.journey.title')} <span className="gradient-text">{t('services.journey.titleHighlight')}</span>
             </motion.h2>
           </motion.div>
 
           {/* Steps — vertical timeline */}
           <div className="relative">
-            {/* Vertical connector line */}
             <div className="hidden lg:block absolute left-[39px] top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 via-primary/20 to-transparent" />
-
             <div className="space-y-8 lg:space-y-0">
-              {[
-                { icon: Smartphone, num: '01', title: 'Register', desc: 'Sign up with your phone number, verify via OTP, and create your secure Individual or Business account — all in under two minutes.' },
-                { icon: ScanFace, num: '02', title: 'Verify Identity', desc: 'Complete KYC through ONFIDO with document upload and facial recognition. Your verified status unlocks your wallet instantly.' },
-                { icon: Wallet, num: '03', title: 'Activate Wallet', desc: 'Unlock your FlexM digital wallet with a single OTP. Top up through PayNow QR — funds credited within 30 minutes.' },
-                { icon: Send, num: '04', title: 'Send Money', desc: 'Choose Bank Transfer or FlexM Wallet. Review live exchange rates and fees. Confirm your transfer and track it in real time.' },
-              ].map((step, i) => {
+              {journeySteps.map((step, i) => {
                 const Icon = step.icon;
                 return (
                   <motion.div
@@ -146,14 +150,11 @@ function Services() {
                     initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.12, duration: 0.6 }} viewport={{ once: true }}
                   >
-                    {/* Step indicator */}
                     <div className="relative z-10 flex-shrink-0">
                       <div className="w-20 h-20 rounded-2xl bg-neutral-900 border border-neutral-800 group-hover:border-primary/40 flex items-center justify-center transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(0,208,132,0.15)]">
                         <Icon className="w-9 h-9 text-primary group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
                       </div>
                     </div>
-
-                    {/* Content */}
                     <div className="flex-1 glass-card rounded-2xl p-8 group-hover:border-primary/20 transition-all duration-300 min-h-[140px]">
                       <div className="flex items-center justify-between mb-3">
                         <h3 className="text-xl lg:text-2xl font-bold text-white">{step.title}</h3>
@@ -169,19 +170,18 @@ function Services() {
         </div>
       </section>
 
-      {/* ─── PAYMENT METHODS (Tabs) ─── */}
+      {/* ─── PAYMENT METHODS ─── */}
       <section className="py-28 px-6 lg:px-16">
         <div className="max-w-5xl mx-auto">
           <motion.div className="mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">
-              Payment Channels
+              {t('services.payment.label')}
             </motion.span>
             <motion.h2 variants={fadeUp} custom={1} className="text-3xl lg:text-5xl font-bold text-white mt-4">
-              Two ways to send. <span className="gradient-text">Your choice.</span>
+              {t('services.payment.title')} <span className="gradient-text">{t('services.payment.titleHighlight')}</span>
             </motion.h2>
           </motion.div>
 
-          {/* Tab switcher */}
           <div className="flex gap-2 mb-10">
             {(['bank', 'wallet'] as const).map((key) => (
               <button
@@ -198,7 +198,6 @@ function Services() {
             ))}
           </div>
 
-          {/* Tab content */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activePayment}
@@ -217,7 +216,6 @@ function Services() {
                       </span>
                     </div>
                   </div>
-
                   <div className="space-y-4">
                     {active.features.map((f, fi) => (
                       <div key={fi} className="flex items-start gap-3">
@@ -227,13 +225,11 @@ function Services() {
                     ))}
                   </div>
                 </div>
-
-                {/* Visual placeholder */}
                 <div className="flex-1 w-full">
                   <div className="glass-card rounded-2xl p-8 flex items-center justify-center min-h-[260px]">
                     <div className="text-center">
                       <ActiveIcon className="w-16 h-16 text-neutral-700 mx-auto mb-3" strokeWidth={1} />
-                      <p className="text-neutral-600 text-sm">Payment flow preview</p>
+                      <p className="text-neutral-600 text-sm">{t('services.payment.preview')}</p>
                     </div>
                   </div>
                 </div>
@@ -243,16 +239,16 @@ function Services() {
         </div>
       </section>
 
-      {/* ─── MANAGEMENT FEATURES (Alternating) ─── */}
+      {/* ─── MANAGEMENT FEATURES ─── */}
       <section className="py-28 px-6 lg:px-16 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div className="text-center mb-20" initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">
-                Portal & App Capabilities
+                {t('services.capabilities.label')}
             </motion.span>
             <motion.h2 variants={fadeUp} custom={1} className="text-3xl lg:text-5xl font-bold text-white mt-4">
-              Manage, monitor, <span className="gradient-text">stay in control.</span>
+              {t('services.capabilities.title')} <span className="gradient-text">{t('services.capabilities.titleHighlight')}</span>
             </motion.h2>
           </motion.div>
 
@@ -264,12 +260,12 @@ function Services() {
             >
               <motion.div className="flex-1 space-y-5" variants={fadeUp} custom={0}>
                 <Users className="w-10 h-10 text-primary" strokeWidth={1.5} />
-                <h3 className="text-2xl lg:text-4xl font-bold text-white">Receiver Directory</h3>
+                <h3 className="text-2xl lg:text-4xl font-bold text-white">{t('services.capabilities.receivers.title')}</h3>
                 <p className="text-neutral-400 text-lg leading-relaxed">
-                  Add receivers from the Send Money flow or the dedicated Receivers page. Store their full name, country, currency, and bank account details. Edit, delete, and search your entire directory — choose from saved receivers for instant repeat transfers.
+                  {t('services.capabilities.receivers.desc')}
                 </p>
                 <div className="flex flex-wrap gap-3 pt-2">
-                  {['Add & Edit', 'Search & Filter', 'Quick Select', 'Multi-Country'].map(tag => (
+                  {t('services.capabilities.receivers.tags').split(',').map(tag => (
                     <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900 text-neutral-400 border border-neutral-800">
                       {tag}
                     </span>
@@ -290,12 +286,12 @@ function Services() {
             >
               <motion.div className="flex-1 space-y-5" variants={fadeUp} custom={0}>
                 <BarChart3 className="w-10 h-10 text-primary" strokeWidth={1.5} />
-                <h3 className="text-2xl lg:text-4xl font-bold text-white">Transaction Tracking</h3>
+                <h3 className="text-2xl lg:text-4xl font-bold text-white">{t('services.capabilities.tracking.title')}</h3>
                 <p className="text-neutral-400 text-lg leading-relaxed">
-                  Every transaction generates a unique reference ID. Track status in real time — Pending, Processing, Completed, or Failed. Access your full history with pagination, column sorting, date range filters, and reference number search. Export records and download receipts for every transfer.
+                  {t('services.capabilities.tracking.desc')}
                 </p>
                 <div className="flex flex-wrap gap-3 pt-2">
-                  {['Real-Time Status', 'Sort & Filter', 'Export Records', 'Download Receipts'].map(tag => (
+                  {t('services.capabilities.tracking.tags').split(',').map(tag => (
                     <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900 text-neutral-400 border border-neutral-800">
                       {tag}
                     </span>
@@ -316,12 +312,12 @@ function Services() {
             >
               <motion.div className="flex-1 space-y-5" variants={fadeUp} custom={0}>
                 <Wallet className="w-10 h-10 text-primary" strokeWidth={1.5} />
-                <h3 className="text-2xl lg:text-4xl font-bold text-white">Wallet & Balance</h3>
+                <h3 className="text-2xl lg:text-4xl font-bold text-white">{t('services.capabilities.wallet.title')}</h3>
                 <p className="text-neutral-400 text-lg leading-relaxed">
-                  Activated after KYC verification, your FlexM digital wallet shows your real-time balance and transaction history. Top up via PayNow QR — scan, pay, submit your reference, and your funds are credited within 30 minutes. Insufficient balance? The portal or app automatically prompts you to top up.
+                  {t('services.capabilities.wallet.desc')}
                 </p>
                 <div className="flex flex-wrap gap-3 pt-2">
-                  {['PayNow Top-Up', 'Real-Time Balance', '30-Min Credit', 'Auto Prompts'].map(tag => (
+                  {t('services.capabilities.wallet.tags').split(',').map(tag => (
                     <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium bg-neutral-900 text-neutral-400 border border-neutral-800">
                       {tag}
                     </span>
@@ -341,30 +337,29 @@ function Services() {
       {/* ─── CTA ─── */}
       <section className="py-32 px-6 lg:px-16 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
-
         <motion.div
           className="container mx-auto relative z-10"
           initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
           <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl">
-            Experience it <span className="gradient-text">yourself.</span>
+            {t('services.cta.heading')} <span className="gradient-text">{t('services.cta.headingHighlight')}</span>
           </motion.h2>
           <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6 max-w-2xl">
-            Create your account and start sending money internationally in minutes.
+            {t('services.cta.description')}
           </motion.p>
           <motion.div variants={fadeUp} custom={2} className="flex flex-wrap justify-center gap-4 mt-10">
             <button
               onClick={() => window.open('https://customer.dazzlingxchange.com/', '_blank')}
               className="group flex items-center gap-2 px-10 py-5 bg-primary text-neutral-950 rounded-full font-semibold text-lg hover:shadow-[0_0_40px_rgba(0,208,132,0.4)] transition-all duration-300 hover:scale-[1.02]"
             >
-              Open Customer Portal
+              {t('services.cta.portal')}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <button
               onClick={openSalesModal}
               className="px-10 py-5 border border-neutral-700 text-white rounded-full font-medium text-lg hover:border-primary/50 hover:text-primary transition-all duration-300"
             >
-              Contact Us
+              {t('services.cta.contactBtn')}
             </button>
           </motion.div>
         </motion.div>

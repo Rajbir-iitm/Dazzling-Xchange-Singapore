@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Shield, Zap, Users, Globe, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
@@ -13,15 +14,18 @@ const fadeUp = {
   })
 };
 
+const valueIcons = [Shield, Zap, Users, Globe];
+
 function About() {
+  const { t } = useTranslation();
   const { ref: statsRef, inView: statsInView } = useInView({ threshold: 0.3, triggerOnce: true });
 
-  const values = [
-    { icon: Shield, title: 'Security & Compliance', desc: 'Licensed under PSO (PS20200465) with ONFIDO-powered KYC, OTP authentication, and full regulatory compliance to safeguard every transfer.' },
-    { icon: Zap, title: 'Technology-Driven', desc: 'Real-time exchange rates, instant status tracking, downloadable receipts, and modern infrastructure that processes transfers in minutes — not days.' },
-    { icon: Users, title: 'Customer-First Design', desc: 'Guided registration, intuitive payment flows, comprehensive receiver management, and 24/7 support that resolves issues within 24 hours.' },
-    { icon: Globe, title: 'Global Connectivity', desc: 'Send money internationally in multiple currencies through Bank Transfer or FlexM Wallet with transparent fees and competitive exchange rates.' },
-  ];
+  const valueKeys = ['security', 'technology', 'customerFirst', 'global'];
+  const values = valueKeys.map((key, i) => ({
+    icon: valueIcons[i],
+    title: t(`about.values.${key}.title`),
+    desc: t(`about.values.${key}.desc`),
+  }));
 
   return (
     <div className="bg-black min-h-screen">
@@ -37,23 +41,23 @@ function About() {
                 className="inline-block px-4 py-1.5 rounded-full text-sm font-medium border border-primary/30 text-primary bg-primary/5 mb-8"
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               >
-                About Dazzling Xchange
+                {t('about.hero.badge')}
               </motion.span>
 
               <motion.h1
                 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight"
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}
               >
-                <span className="text-white">Enabling people to move</span><br />
-                <span className="text-white">money </span>
-                <span className="gradient-text">across borders.</span>
+                <span className="text-white">{t('about.hero.line1')}</span><br />
+                <span className="text-white">{t('about.hero.line2')} </span>
+                <span className="gradient-text">{t('about.hero.line2Highlight')}</span>
               </motion.h1>
 
               <motion.p
                 className="text-neutral-400 text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed"
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
               >
-                Dazzling Xchange is a licensed digital remittance platform based in Singapore. We make it simple for individuals and businesses to register, verify, and send money internationally — through our secure Customer Portal or mobile app.
+                {t('about.hero.description')}
               </motion.p>
 
               <motion.div
@@ -82,7 +86,7 @@ function About() {
                         <Globe className="w-16 h-16 text-primary/30 group-hover:text-primary/50 transition-colors duration-500" strokeWidth={1.5} />
                       </div>
                     </div>
-                    <p className="text-neutral-700 text-sm font-medium">Image Placeholder</p>
+                    <p className="text-neutral-700 text-sm font-medium">{t('about.hero.placeholder')}</p>
                   </div>
                 </div>
               </div>
@@ -101,16 +105,16 @@ function About() {
               initial="hidden" whileInView="visible" viewport={{ once: true }}
             >
               <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">
-                Our Mission
+                {t('about.mission.label')}
               </motion.span>
               <motion.h2 variants={fadeUp} custom={1} className="text-3xl lg:text-5xl font-bold text-white">
-                Making international transfers <span className="gradient-text">accessible to all.</span>
+                {t('about.mission.title')} <span className="gradient-text">{t('about.mission.titleHighlight')}</span>
               </motion.h2>
               <motion.p variants={fadeUp} custom={2} className="text-neutral-400 text-lg leading-relaxed">
-                We believe sending money across borders should be as simple as sending a message. Our platform handles the complexity — OTP-secured registration, ONFIDO identity verification, wallet activation, receiver management, and end-to-end transaction tracking — so you can focus on what matters most.
+                {t('about.mission.p1')}
               </motion.p>
               <motion.p variants={fadeUp} custom={3} className="text-neutral-400 text-lg leading-relaxed">
-                Whether you're an individual sending funds to family or a business managing international supplier payments, we provide the tools, security, and transparency to make every transfer <span className="text-primary font-medium">effortless.</span>
+                {t('about.mission.p2.start')} <span className="text-primary font-medium">{t('about.mission.p2.highlight')}</span>
               </motion.p>
             </motion.div>
 
@@ -120,10 +124,10 @@ function About() {
               initial="hidden" whileInView="visible" viewport={{ once: true }}
             >
               {[
-                { value: '130+', label: 'Countries' },
-                { value: '29+', label: 'Currencies' },
-                { value: '24/7', label: 'Support' },
-                { value: '99.9%', label: 'Uptime' },
+                { value: t('about.mission.stats.countries.value'), label: t('about.mission.stats.countries') },
+                { value: t('about.mission.stats.currencies.value'), label: t('about.mission.stats.currencies') },
+                { value: t('about.mission.stats.support.value'), label: t('about.mission.stats.support') },
+                { value: t('about.mission.stats.uptime.value'), label: t('about.mission.stats.uptime') },
               ].map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -147,21 +151,21 @@ function About() {
             className="text-primary text-sm font-semibold tracking-widest uppercase"
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
           >
-            Our Impact
+            {t('about.metrics.label')}
           </motion.span>
           <motion.h2
             className="text-3xl lg:text-5xl font-bold text-white mt-4 mb-16"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
           >
-            Built for reliability. <span className="gradient-text">Designed for scale.</span>
+            {t('about.metrics.title')} <span className="gradient-text">{t('about.metrics.titleHighlight')}</span>
           </motion.h2>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { value: 204, prefix: '£', suffix: 'M', label: 'Revenue in FY2023' },
-              { value: 1000000, suffix: '+', label: 'International Transfers' },
-              { value: 20000, suffix: '+', label: 'Verified Customers' },
-              { value: 1600, suffix: '+', label: 'Team Members Globally' },
+              { value: 204, prefix: '£', suffix: 'M', label: t('about.metrics.revenue.label') },
+              { value: 1000000, suffix: '+', label: t('about.metrics.transfers.label') },
+              { value: 20000, suffix: '+', label: t('about.metrics.customers.label') },
+              { value: 1600, suffix: '+', label: t('about.metrics.team.label') },
             ].map((stat, i) => (
               <motion.div
                 key={stat.label}
@@ -190,10 +194,10 @@ function About() {
             initial="hidden" whileInView="visible" viewport={{ once: true }}
           >
             <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">
-              Our Values
+              {t('about.values.label')}
             </motion.span>
             <motion.h2 variants={fadeUp} custom={1} className="text-3xl lg:text-5xl font-bold text-white mt-4">
-              What we <span className="gradient-text">stand for.</span>
+              {t('about.values.title')} <span className="gradient-text">{t('about.values.titleHighlight')}</span>
             </motion.h2>
           </motion.div>
 

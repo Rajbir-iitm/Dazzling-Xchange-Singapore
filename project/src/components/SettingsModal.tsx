@@ -21,9 +21,11 @@ function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
     }
   };
 
-  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleLanguageChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newLanguage = e.target.value;
-    i18n.changeLanguage(newLanguage);
+    // Reload resources to ensure we get fresh translations
+    await i18n.reloadResources([newLanguage]);
+    await i18n.changeLanguage(newLanguage);
   };
 
   // Animation variants for Framer Motion

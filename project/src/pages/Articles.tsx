@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Search, BookOpen, Clock, ArrowRight, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -22,6 +23,7 @@ interface Article {
 }
 
 function Articles() {
+  const { t } = useTranslation();
   const [articles, setArticles] = useState<Article[]>([]);
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(true);
@@ -110,22 +112,22 @@ function Articles() {
               className="inline-block px-4 py-1.5 rounded-full text-sm font-medium border border-primary/30 text-primary bg-primary/5 mb-8"
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             >
-              Articles & Guides
+              {t('articles.hero.badge')}
             </motion.span>
 
             <motion.h1
               className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight"
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}
             >
-              <span className="text-white">Insights for</span><br />
-              <span className="gradient-text">smarter transfers.</span>
+              <span className="text-white">{t('articles.hero.line1')}</span><br />
+              <span className="gradient-text">{t('articles.hero.line1Highlight')}</span>
             </motion.h1>
 
             <motion.p
               className="text-neutral-400 text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed"
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
             >
-              Expert guides, tutorials, and insights to help you navigate international money transfers, compliance, and financial solutions.
+              {t('articles.hero.description')}
             </motion.p>
 
             {/* Search Bar */}
@@ -136,7 +138,7 @@ function Articles() {
               <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-neutral-500 w-5 h-5" />
               <input
                 type="search"
-                placeholder="Search articles..."
+                placeholder={t('articles.search.placeholder')}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 className="w-full bg-neutral-900/80 text-white placeholder-neutral-500 rounded-full pl-14 pr-6 py-4 transition-all duration-300 border border-neutral-800 focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/10 hover:border-neutral-700 backdrop-blur-sm"
@@ -162,7 +164,7 @@ function Articles() {
               className="text-neutral-500 text-sm mb-6"
               initial={{ opacity: 0 }} animate={{ opacity: 1 }}
             >
-              {filteredArticles.length} article{filteredArticles.length !== 1 ? 's' : ''} found for "{query}"
+              {filteredArticles.length} {t('articles.card.label')}{filteredArticles.length !== 1 ? 's' : ''} found for "{query}"
             </motion.p>
           )}
 
@@ -199,7 +201,7 @@ function Articles() {
                     <div className="p-6 space-y-3">
                       <div className="flex items-center text-neutral-500 text-xs font-medium uppercase tracking-wider">
                         <Clock className="w-3.5 h-3.5 mr-1.5" />
-                        <span>Article</span>
+                        <span>{t('articles.card.label')}</span>
                       </div>
 
                       <h3 className="text-white text-lg font-bold group-hover:text-primary transition-colors duration-200 line-clamp-2">
@@ -215,11 +217,11 @@ function Articles() {
                           overflow: 'hidden',
                         }}
                       >
-                        {article.description || 'Explore this comprehensive guide to enhance your understanding of international financial services.'}
+                        {article.description || t('articles.card.fallbackDesc')}
                       </p>
 
                       <div className="flex items-center text-primary text-sm font-medium pt-2 group-hover:gap-2 transition-all duration-200">
-                        <span>Read more</span>
+                        <span>{t('articles.card.readMore')}</span>
                         <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" />
                       </div>
                     </div>
@@ -236,18 +238,18 @@ function Articles() {
               <div className="w-24 h-24 glass-card rounded-full flex items-center justify-center mx-auto mb-8">
                 <Search className="w-10 h-10 text-neutral-600" />
               </div>
-              <h3 className="text-white text-2xl font-bold mb-3">No articles found</h3>
+              <h3 className="text-white text-2xl font-bold mb-3">{t('articles.empty.title')}</h3>
               <p className="text-neutral-400 max-w-md mx-auto mb-8">
                 {query
-                  ? "We couldn't find any articles matching your search. Try different keywords."
-                  : "No articles are available at the moment. Check back soon for new content!"}
+                  ? t('articles.empty.withQuery')
+                  : t('articles.empty.noQuery')}
               </p>
               {query && (
                 <button
                   onClick={() => setQuery('')}
                   className="px-8 py-3 bg-primary text-neutral-950 rounded-full font-semibold hover:shadow-[0_0_30px_rgba(0,208,132,0.4)] transition-all duration-300 hover:scale-[1.02]"
                 >
-                  Clear Search
+                  {t('articles.empty.clearSearch')}
                 </button>
               )}
             </motion.div>

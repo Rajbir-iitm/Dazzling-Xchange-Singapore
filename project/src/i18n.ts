@@ -3,7 +3,10 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import Backend from 'i18next-http-backend';
 
-i18n
+// Cache version - increment this when locale files are updated
+const LOCALE_VERSION = '2026-02-14-v4';
+
+const initPromise = i18n
   .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -20,14 +23,20 @@ i18n
       caches: ['localStorage']
     },
     backend: {
-      loadPath: '/locales/{{lng}}.json'
+      loadPath: `/locales/{{lng}}.json?v=${LOCALE_VERSION}`,
+      crossDomain: false,
+      withCredentials: false
     },
     react: { 
-      useSuspense: false 
+      useSuspense: true
     },
     interpolation: {
       escapeValue: false
-    }
+    },
+    load: 'languageOnly',
+    ns: ['translation'],
+    defaultNS: 'translation'
   });
 
 export default i18n;
+export { initPromise };
