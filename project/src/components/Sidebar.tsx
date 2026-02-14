@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Home, UserCircle, Briefcase, BookOpen, Settings } from 'lucide-react';
+import { Home, UserCircle, Briefcase, BookOpen, Settings, MonitorPlay } from 'lucide-react';
 import { Sidebar, SidebarBody, SidebarLink } from './ui/sidebar';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
@@ -56,6 +56,20 @@ function SidebarComponent({ onOpenSettings }: SidebarProps) {
           className={cn(
             'w-6 h-6 transition-colors duration-200',
             isActive('/services') 
+              ? 'text-[#16d68f]' 
+              : 'text-white group-hover/sidebar:text-[#16d68f]'
+          )}
+        />
+      )
+    },
+    {
+      label: 'Walkthrough',
+      href: '/walkthrough',
+      icon: (
+        <MonitorPlay 
+          className={cn(
+            'w-8 h-8 transition-colors duration-200',
+            isActive('/walkthrough') 
               ? 'text-[#16d68f]' 
               : 'text-white group-hover/sidebar:text-[#16d68f]'
           )}

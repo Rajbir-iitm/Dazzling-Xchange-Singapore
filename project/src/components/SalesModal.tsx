@@ -172,8 +172,8 @@ const SalesModal = () => {
 
               {submitted ? (
                 <div className="flex flex-col items-center justify-center min-h-[300px] text-center">
-                  <h2 className="text-2xl font-bold text-white mb-4">Thank you for your submission!</h2>
-                  <p className="text-gray-300 mb-8">Our team will contact you soon to help you open your account.</p>
+                  <h2 className="text-2xl font-bold text-white mb-4">Thank you for reaching out!</h2>
+                  <p className="text-gray-300 mb-8">Our team will get back to you shortly to assist with your enquiry.</p>
                   <button
                     type="button"
                     onClick={() => { 

@@ -1,262 +1,181 @@
 import React from 'react';
-import { Users, Globe, Shield, Zap, Network } from 'lucide-react';
+import { Shield, Zap, Users, Globe } from 'lucide-react';
 import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
-import { useTranslation } from 'react-i18next';
 import Footer from '../components/Footer';
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i: number) => ({
+    opacity: 1, y: 0,
+    transition: { delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+  })
+};
+
 function About() {
-  const { t } = useTranslation();
   const { ref: statsRef, inView: statsInView } = useInView({ threshold: 0.3, triggerOnce: true });
 
+  const values = [
+    { icon: Shield, title: 'Security & Compliance', desc: 'Licensed under PSO (PS20200465) with ONFIDO-powered KYC, OTP authentication, and full regulatory compliance to safeguard every transfer.' },
+    { icon: Zap, title: 'Technology-Driven', desc: 'Real-time exchange rates, instant status tracking, downloadable receipts, and modern infrastructure that processes transfers in minutes — not days.' },
+    { icon: Users, title: 'Customer-First Design', desc: 'Guided registration, intuitive payment flows, comprehensive receiver management, and 24/7 support that resolves issues within 24 hours.' },
+    { icon: Globe, title: 'Global Connectivity', desc: 'Send money internationally in multiple currencies through Bank Transfer or FlexM Wallet with transparent fees and competitive exchange rates.' },
+  ];
+
   return (
-    <div className="bg-neutral-950 min-h-screen">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center bg-neutral-950 w-full">
-        <div className="container mx-auto px-6 lg:px-16 py-12">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left: Content */}
-            <motion.div 
-              className="space-y-6 md:space-y-8 z-10"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
+    <div className="bg-black min-h-screen">
+      {/* ─── HERO ─── */}
+      <section className="relative pt-20 pb-32 px-6 lg:px-16 overflow-hidden">
+        <div className="absolute top-20 -right-40 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+
+        <div className="max-w-5xl mx-auto relative z-10">
+          <motion.span
+            className="inline-block px-4 py-1.5 rounded-full text-sm font-medium border border-primary/30 text-primary bg-primary/5 mb-8"
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+          >
+            About Dazzling Xchange
+          </motion.span>
+
+          <motion.h1
+            className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight max-w-4xl"
+            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}
+          >
+            <span className="text-white">Enabling people to move</span><br />
+            <span className="text-white">money </span>
+            <span className="gradient-text">across borders.</span>
+          </motion.h1>
+
+          <motion.p
+            className="text-neutral-400 text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed"
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+          >
+            Dazzling Xchange is a licensed digital remittance platform based in Singapore. We make it simple for individuals and businesses to register, verify, and send money internationally — through a secure, self-service Customer Portal.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* ─── MISSION ─── */}
+      <section className="py-28 px-6 lg:px-16 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            <motion.div
+              className="space-y-6"
+              initial="hidden" whileInView="visible" viewport={{ once: true }}
             >
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.6 }}
-              >
-                <p className="text-primary text-lg lg:text-xl font-medium font-primary tracking-wide mb-4 uppercase">
-                  {t('about.header')}
-                </p>
-                <h1 className="text-secondary text-3xl lg:text-4xl xl:text-5xl font-semibold font-primary leading-tight">
-                  {t('about.title')}
-                </h1>
-              </motion.div>
-              
-              <motion.p 
-                className="text-neutral-300 text-lg lg:text-xl max-w-2xl font-primary leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.6 }}
-              >
-                {t('about.subtitle')}
+              <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">
+                Our Mission
+              </motion.span>
+              <motion.h2 variants={fadeUp} custom={1} className="text-3xl lg:text-5xl font-bold text-white">
+                Making international transfers <span className="gradient-text">accessible to all.</span>
+              </motion.h2>
+              <motion.p variants={fadeUp} custom={2} className="text-neutral-400 text-lg leading-relaxed">
+                We believe sending money across borders should be as simple as sending a message. Our platform handles the complexity — OTP-secured registration, ONFIDO identity verification, wallet activation, receiver management, and end-to-end transaction tracking — so you can focus on what matters most.
+              </motion.p>
+              <motion.p variants={fadeUp} custom={3} className="text-neutral-400 text-lg leading-relaxed">
+                Whether you're an individual sending funds to family or a business managing international supplier payments, we provide the tools, security, and transparency to make every transfer <span className="text-primary font-medium">effortless.</span>
               </motion.p>
             </motion.div>
 
-            {/* Right: Simple Visual Element */}
-            <motion.div 
-              className="relative h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8, duration: 1, ease: 'easeOut' }}
-            >
-              <div className="relative">
-                <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-primary/20 to-accent/30 flex items-center justify-center">
-                  <Globe className="w-24 h-24 md:w-32 md:h-32 text-primary" />
-                </div>
-                
-                {/* Floating elements */}
-                <motion.div
-                  className="absolute top-1/4 left-1/4 w-3 h-3 bg-primary rounded-full blur-sm"
-                  animate={{ y: [0, -10, 0], opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
-                />
-                <motion.div
-                  className="absolute top-3/4 right-1/4 w-2 h-2 bg-accent rounded-full blur-sm"
-                  animate={{ y: [0, 10, 0], opacity: [0.3, 0.8, 0.3] }}
-                  transition={{ duration: 4, repeat: Infinity, repeatType: 'reverse', delay: 1 }}
-                />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-        
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 opacity-50" />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-accent/5" />
-      </section>
-
-      {/* Our Mission Section */}
-      <section 
-        className="py-20 px-6 lg:px-24 bg-neutral-900"
-        aria-labelledby="our-mission"
-      >
-        <h2 id="our-mission" className="sr-only">Our Mission</h2>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Left Column - Mission Content */}
+            {/* Stats grid */}
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              className="grid grid-cols-2 gap-4"
+              initial="hidden" whileInView="visible" viewport={{ once: true }}
             >
-              <h2 className="text-3xl lg:text-4xl font-bold text-secondary mb-6 font-primary">
-                {t('about.mission')}
-              </h2>
-              
-              <div className="space-y-6">
-                <p className="text-lg text-neutral-300 leading-relaxed font-primary">
-                  {t('about.mission.description1')} <span className="text-primary font-semibold">{t('about.mission.highlight')}</span> {t('about.mission.description2')}
-                </p>
-                
-                <p className="text-neutral-300 leading-relaxed font-primary">
-                  {t('about.mission.text')}
-                </p>
-
-                <div className="grid grid-cols-2 gap-4 mt-8">
-                  {[
-                    { number: "130+", label: t('about.mission.stats.countries') },
-                    { number: "29+", label: t('about.mission.stats.currencies') },
-                    { number: "24/7", label: t('about.mission.stats.support') },
-                    { number: "99.9%", label: t('about.mission.stats.uptime') }
-                  ].map((item, index) => (
-                    <motion.div 
-                      key={item.label}
-                      className="text-center p-4 bg-neutral-800 rounded-2xl"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      viewport={{ once: true }}
-                    >
-                      <div className="text-xl font-bold text-primary font-primary">{item.number}</div>
-                      <div className="text-sm text-neutral-400 font-primary">{item.label}</div>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Right Column - Image */}
-            <motion.div 
-              className="relative"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <img 
-                src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop" 
-                alt="Team collaboration representing global business empowerment" 
-                className="w-full rounded-2xl shadow-lg card-hover-glow hover:-translate-y-1 transition-transform duration-300 ease-in-out" 
-              />
+              {[
+                { value: '130+', label: 'Countries' },
+                { value: '29+', label: 'Currencies' },
+                { value: '24/7', label: 'Support' },
+                { value: '99.9%', label: 'Uptime' },
+              ].map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  variants={fadeUp} custom={i}
+                  className="glass-card glass-card-hover rounded-2xl p-6 text-center transition-all duration-300"
+                >
+                  <p className="text-2xl lg:text-3xl font-bold gradient-text">{stat.value}</p>
+                  <p className="text-neutral-500 text-sm mt-1 font-medium">{stat.label}</p>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Key Metrics Section */}
-      <section 
-        className="py-20 px-6 lg:px-24 bg-gradient-to-r from-neutral-950 via-neutral-900 to-neutral-950"
-        aria-labelledby="key-metrics"
-      >
-        <h2 id="key-metrics" className="sr-only">Company Key Metrics and Achievements</h2>
-        <div className="max-w-7xl mx-auto">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
+      {/* ─── METRICS ─── */}
+      <section className="py-20 relative" ref={statsRef}>
+        <div className="divider-gradient mb-16" />
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <motion.span
+            className="text-primary text-sm font-semibold tracking-widest uppercase"
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-secondary font-primary mb-4">
-              {t('about.metrics.title')}
-            </h2>
-            <p className="text-lg text-neutral-300 font-primary">
-              {t('about.metrics.subtitle')}
-            </p>
-          </motion.div>
+            Our Impact
+          </motion.span>
+          <motion.h2
+            className="text-3xl lg:text-5xl font-bold text-white mt-4 mb-16"
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          >
+            Built for reliability. <span className="gradient-text">Designed for scale.</span>
+          </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center" ref={statsRef}>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { value: 204, suffix: " M", prefix: "£", label: t('about.metrics.revenue') },
-              { value: 1000000, suffix: "+", prefix: "", label: t('about.metrics.payments') },
-              { value: 20000, suffix: "+", prefix: "", label: t('about.metrics.clients') },
-              { value: 1600, suffix: "+", prefix: "", label: t('about.metrics.employees') },
-            ].map((stat, index) => (
+              { value: 204, prefix: '£', suffix: 'M', label: 'Revenue in FY2023' },
+              { value: 1000000, suffix: '+', label: 'International Transfers' },
+              { value: 20000, suffix: '+', label: 'Verified Customers' },
+              { value: 1600, suffix: '+', label: 'Team Members Globally' },
+            ].map((stat, i) => (
               <motion.div
                 key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-neutral-800 rounded-2xl p-8 shadow-lg card-hover-glow transition-transform duration-300 hover:-translate-y-1"
+                className="py-4"
+                initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }} viewport={{ once: true }}
               >
-                <div className="text-3xl lg:text-4xl font-bold text-secondary font-primary mb-2">
+                <p className="text-3xl lg:text-5xl font-bold text-white">
                   {statsInView ? (
-                    <>
-                      {stat.prefix}
-                      <CountUp 
-                        end={stat.value} 
-                        duration={2.5}
-                        separator=","
-                        delay={index * 0.2}
-                      />
-                      {stat.suffix}
-                    </>
-                  ) : (
-                    `${stat.prefix}0${stat.suffix}`
-                  )}
-                </div>
-                <p className="text-neutral-300 font-primary">{stat.label}</p>
+                    <>{stat.prefix}<CountUp end={stat.value} duration={2.5} separator="," delay={i * 0.2} />{stat.suffix}</>
+                  ) : `${stat.prefix || ''}0${stat.suffix}`}
+                </p>
+                <p className="text-neutral-500 text-sm mt-2 font-medium">{stat.label}</p>
               </motion.div>
             ))}
           </div>
         </div>
+        <div className="divider-gradient mt-16" />
       </section>
 
-      {/* Our Values Section */}
-      <section 
-        className="py-20 px-6 lg:px-24 bg-neutral-950"
-        aria-labelledby="our-values"
-      >
-        <h2 id="our-values" className="text-3xl lg:text-4xl font-bold text-secondary mb-16 text-center font-primary">
-          {t('about.values')}
-        </h2>
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: Shield,
-                title: t('about.values.trust.title'),
-                description: t('about.values.trust.description')
-              },
-              {
-                icon: Zap,
-                title: t('about.values.innovation.title'),
-                description: t('about.values.innovation.description')
-              },
-              {
-                icon: Users,
-                title: t('about.values.customer.title'),
-                description: t('about.values.customer.description')
-              },
-              {
-                icon: Network,
-                title: t('about.values.global.title'),
-                description: t('about.values.global.description')
-              }
-            ].map((value, index) => {
-              const IconComponent = value.icon;
+      {/* ─── VALUES ─── */}
+      <section className="py-28 px-6 lg:px-16">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden" whileInView="visible" viewport={{ once: true }}
+          >
+            <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">
+              Our Values
+            </motion.span>
+            <motion.h2 variants={fadeUp} custom={1} className="text-3xl lg:text-5xl font-bold text-white mt-4">
+              What we <span className="gradient-text">stand for.</span>
+            </motion.h2>
+          </motion.div>
+
+          {/* Bento-style values grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {values.map((val, i) => {
+              const Icon = val.icon;
+              const isLarge = i === 0 || i === 3;
               return (
                 <motion.div
-                  key={value.title}
-                  className="bg-neutral-800 p-6 rounded-2xl card-hover-glow transition-transform duration-300 ease-in-out hover:-translate-y-1"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
+                  key={val.title}
+                  className={`glass-card glass-card-hover rounded-3xl p-8 lg:p-10 transition-all duration-300 ${isLarge ? 'md:col-span-2 lg:col-span-1' : ''}`}
+                  initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }} viewport={{ once: true }}
                 >
-                  <IconComponent className="w-8 h-8 text-primary mb-4" />
-                  <h3 className="text-secondary text-xl font-semibold mb-3 font-primary">
-                    {value.title}
-                  </h3>
-                  <p className="text-neutral-300 text-sm leading-relaxed font-primary">
-                    {value.description}
-                  </p>
+                  <Icon className="w-10 h-10 text-primary mb-5" strokeWidth={1.5} />
+                  <h3 className="text-xl lg:text-2xl font-bold text-white mb-3">{val.title}</h3>
+                  <p className="text-neutral-400 leading-relaxed">{val.desc}</p>
                 </motion.div>
               );
             })}
@@ -264,7 +183,6 @@ function About() {
         </div>
       </section>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

@@ -24,6 +24,11 @@ function Footer() {
                   {t('footer.services')}
                 </Link>
               </li>
+              <li>
+                <Link to="/walkthrough" className="footer-link">
+                  Portal Walkthrough
+                </Link>
+              </li>
             </ul>
           </div>
 
