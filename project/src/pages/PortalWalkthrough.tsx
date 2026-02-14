@@ -177,7 +177,7 @@ function PortalWalkthrough() {
                     initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }}
                   >
                     <motion.div variants={fadeUp} custom={0} className="flex items-center gap-4 mb-4">
-                      <span className="text-primary/30 text-6xl lg:text-7xl font-bold">{step.num}</span>
+                      <span className="text-6xl lg:text-7xl font-bold text-white">{step.num}</span>
                       <div>
                         <h2 className="text-3xl lg:text-4xl font-bold text-white">{step.title}</h2>
                         <p className="text-primary text-base font-medium mt-1">{step.subtitle}</p>

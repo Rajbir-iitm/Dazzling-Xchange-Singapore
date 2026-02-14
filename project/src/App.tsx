@@ -22,12 +22,10 @@ function App() {
     <Router>
       <div className="min-h-screen bg-black w-full overflow-x-hidden min-w-[320px] font-primary flex m-0 p-0">
         {/* Sidebar Component */}
-        <div className="bg-black m-0 p-0">
-          <Sidebar onOpenSettings={openSettings} />
-        </div>
+        <Sidebar onOpenSettings={openSettings} />
         
-        {/* Main Content */}
-        <main className="flex-1 w-full max-w-full overflow-x-hidden bg-black">
+        {/* Main Content — offset by collapsed sidebar width (60px) */}
+        <main className="flex-1 w-full max-w-full overflow-x-hidden bg-black md:ml-[60px]">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />

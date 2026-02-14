@@ -142,7 +142,7 @@ function Services() {
                   initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }} viewport={{ once: true }}
                 >
-                  <span className="text-5xl font-bold text-neutral-800/50 absolute top-4 right-5">{step.num}</span>
+                  <span className="text-5xl font-bold text-white absolute top-4 right-5">{step.num}</span>
                   <Icon className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition-transform" strokeWidth={1.5} />
                   <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
                   <p className="text-neutral-400 text-sm leading-relaxed">{step.desc}</p>

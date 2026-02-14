@@ -159,7 +159,7 @@ function Home() {
                 >
                   {/* Text side */}
                   <motion.div className="flex-1 space-y-5" variants={fadeUp} custom={0}>
-                    <span className="text-7xl lg:text-8xl font-bold text-neutral-800/60">{step.num}</span>
+                    <span className="text-7xl lg:text-8xl font-bold text-white">{step.num}</span>
                     <h3 className="text-2xl lg:text-4xl font-bold text-white -mt-4">{step.title}</h3>
                     <p className="text-neutral-400 text-lg leading-relaxed max-w-md">{step.desc}</p>
                   </motion.div>

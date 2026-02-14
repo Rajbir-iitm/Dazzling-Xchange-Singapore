@@ -66,7 +66,7 @@ export const Sidebar = ({
 }) => {
   return (
     <SidebarProvider open={open} setOpen={setOpen} animate={animate}>
-      <div className="bg-black m-0 p-0 h-screen">
+      <div className="bg-black m-0 p-0">
         {children}
       </div>
     </SidebarProvider>
@@ -92,7 +92,7 @@ export const DesktopSidebar = ({
     <>
       <motion.div
         className={cn(
-          "h-screen px-4 py-4 hidden md:flex md:flex-col bg-black w-[300px] flex-shrink-0 m-0",
+          "h-screen px-4 py-4 hidden md:flex md:flex-col bg-black flex-shrink-0 m-0 fixed top-0 left-0 z-40",
           className
         )}
         animate={{
