@@ -26,7 +26,7 @@ function Footer() {
               </li>
               <li>
                 <Link to="/walkthrough" className="footer-link">
-                  Portal Walkthrough
+                  Portal & App Walkthrough
                 </Link>
               </li>
             </ul>

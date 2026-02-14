@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Smartphone, ScanFace, Wallet, Send, BarChart3, Users, HelpCircle, ChevronDown } from 'lucide-react';
+import { ArrowRight, Smartphone, ScanFace, Wallet, Send, BarChart3, Users, HelpCircle, ChevronDown, MonitorPlay } from 'lucide-react';
 import Footer from '../components/Footer';
 import { useSalesModalStore } from '../stores/salesModalStore';
 
@@ -21,8 +21,7 @@ const steps = [
     subtitle: 'Create your account in minutes',
     description: 'Choose between Individual or Business account type. Enter your phone number to receive an OTP for verification. Fill in your profile details, create a secure password, and accept the Terms & Conditions. Your account is ready — log in with your phone number or email.',
     highlights: ['Individual & Business accounts', 'Phone-based OTP verification', 'Duplicate email/phone prevention', 'Password strength enforcement', 'Confirmation email sent on sign-up'],
-    screenshotCount: 3,
-    screenshotLabels: ['Account Type Selection', 'OTP Verification Screen', 'Profile Setup Form'],
+    screenshotLabels: ['Registration'],
   },
   {
     id: 'kyc',
@@ -32,8 +31,7 @@ const steps = [
     subtitle: 'Identity verification powered by ONFIDO',
     description: 'Initiate KYC from your homepage or profile. Upload your identity documents (Passport, ID — JPEG, PNG, or PDF up to 2MB). ONFIDO launches in a new tab for document verification and facial recognition. Use the QR code for mobile verification. Your KYC status updates immediately upon completion.',
     highlights: ['ONFIDO document verification', 'Facial recognition technology', 'QR code for mobile verification', 'Supports JPEG, PNG, PDF (2MB max)', 'PEP declaration included'],
-    screenshotCount: 3,
-    screenshotLabels: ['KYC Initiation Screen', 'ONFIDO Verification Flow', 'KYC Verified Status'],
+    screenshotLabels: ['KYC Verification'],
   },
   {
     id: 'wallet',
@@ -43,8 +41,7 @@ const steps = [
     subtitle: 'Unlock your FlexM digital wallet',
     description: 'After KYC verification, click "Unlock Wallet" on your dashboard. Verify with a one-time OTP and your wallet activates instantly. Top up your wallet through PayNow — scan the QR code, make payment, and paste your reference number. Funds are credited within 30 minutes.',
     highlights: ['Wallet unlocks only after KYC', 'OTP-secured activation', 'PayNow QR-based top-up', 'Funds credited within 30 minutes', 'Real-time balance display'],
-    screenshotCount: 3,
-    screenshotLabels: ['Wallet Unlock Prompt', 'PayNow QR Top-Up', 'Wallet Balance View'],
+    screenshotLabels: ['Wallet Activation'],
   },
   {
     id: 'send-money',
@@ -54,8 +51,7 @@ const steps = [
     subtitle: 'Two flexible payment channels',
     description: 'Navigate to "Send Money" and choose your payment method. Bank Transfer: review recipient details, make your bank transfer, and receive confirmation within 15 minutes. FlexM Wallet: pay directly from your wallet balance for instant processing. Exchange rates and fees update in real time as you enter your amount.',
     highlights: ['Bank Transfer — confirmed in ~15 min', 'FlexM Wallet — instant processing', 'Real-time exchange rate display', 'Live fee calculation', 'Confirmation emails at every step'],
-    screenshotCount: 3,
-    screenshotLabels: ['Payment Method Selection', 'Transfer Review Screen', 'Confirmation & Receipt'],
+    screenshotLabels: ['Send Money'],
   },
   {
     id: 'receivers',
@@ -65,8 +61,7 @@ const steps = [
     subtitle: 'Organize your international beneficiaries',
     description: 'Add receivers directly from the Send Money flow or from the dedicated Receivers page. Save their full name, country, currency, and account details. Edit, delete, or search your receiver list anytime. Choose from your saved receivers for quick future transfers.',
     highlights: ['Add from Send Money or Receivers page', 'Full name, country, currency, account details', 'Edit & delete functionality', 'Search and filter receivers', 'Quick selection for repeat transfers'],
-    screenshotCount: 2,
-    screenshotLabels: ['Add New Receiver Form', 'Receiver Directory List'],
+    screenshotLabels: ['Receiver Management'],
   },
   {
     id: 'transactions',
@@ -76,8 +71,7 @@ const steps = [
     subtitle: 'Complete visibility over every transfer',
     description: 'Every transaction generates a unique reference ID. Track status in real time: Pending → Processing → Completed (or Failed/Cancelled). Access your full history with pagination, column sorting, date range filters, and reference number search. Export records and download receipts anytime.',
     highlights: ['Unique reference ID per transaction', 'Real-time status: Pending → Completed', 'Sort, filter, and date range search', 'Export & download receipts', '"Make Another Payment" quick action'],
-    screenshotCount: 2,
-    screenshotLabels: ['Transaction History View', 'Transaction Detail & Receipt'],
+    screenshotLabels: ['Transaction Tracking'],
   },
   {
     id: 'support',
@@ -87,8 +81,7 @@ const steps = [
     subtitle: 'Help is always a click away',
     description: 'Access a comprehensive FAQ section with search functionality and expandable answers. For anything else, our dedicated customer support team is available 24/7 — any issue you encounter is resolved within 24 hours.',
     highlights: ['Searchable FAQ section', 'Expandable answer sections', '24/7 customer support', 'Issues resolved within 24 hours'],
-    screenshotCount: 1,
-    screenshotLabels: ['FAQ & Support Screen'],
+    screenshotLabels: ['FAQ & Support'],
   },
 ];
 
@@ -98,40 +91,69 @@ function PortalWalkthrough() {
   return (
     <div className="bg-black min-h-screen">
       {/* ─── HERO ─── */}
-      <section className="relative pt-20 pb-28 px-6 lg:px-16 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+      <section className="relative pt-20 px-6 lg:px-16 overflow-visible pb-32">
+        <div className="absolute top-0 -right-40 w-[800px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
         
-        <div className="max-w-5xl mx-auto text-center relative z-10">
-          <motion.span
-            className="inline-block px-4 py-1.5 rounded-full text-sm font-medium border border-primary/30 text-primary bg-primary/5 mb-8"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-          >
-            Portal Walkthrough
-          </motion.span>
+        <div className="container mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            {/* Left — Content */}
+            <div className="pt-8 lg:pt-16">
+              <motion.span
+                className="inline-block px-4 py-1.5 rounded-full text-sm font-medium border border-primary/30 text-primary bg-primary/5 mb-8"
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
+              >
+                Portal & App Walkthrough
+              </motion.span>
 
-          <motion.h1
-            className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight"
-            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.7 }}
-          >
-            <span className="text-white">Every screen.</span><br />
-            <span className="text-white">Every step.</span><br />
-            <span className="gradient-text">No guesswork.</span>
-          </motion.h1>
+              <motion.h1
+                className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight"
+                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15, duration: 0.7 }}
+              >
+                <span className="text-white">Every screen.</span><br />
+                <span className="text-white">Every step.</span><br />
+                <span className="gradient-text">No guesswork.</span>
+              </motion.h1>
 
-          <motion.p
-            className="text-neutral-400 text-lg lg:text-xl mt-8 max-w-2xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.6 }}
-          >
-            A complete visual guide to the DX Customer Portal — from your first sign-up to your first international transfer and beyond.
-          </motion.p>
+              <motion.p
+                className="text-neutral-400 text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed"
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.6 }}
+              >
+                A complete visual guide to the DX Customer Portal and app — from your first sign-up to your first international transfer and beyond.
+              </motion.p>
 
-          <motion.div
-            className="mt-10 flex justify-center"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
-          >
-            <ChevronDown className="w-6 h-6 text-primary animate-bounce" />
-          </motion.div>
+              <motion.div
+                className="mt-10 flex"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
+              >
+                <ChevronDown className="w-6 h-6 text-primary animate-bounce" />
+              </motion.div>
+            </div>
+
+            {/* Right — Visual card that overlaps into next section */}
+            <motion.div
+              className="relative lg:translate-y-8"
+              initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-primary/[0.03] rounded-[2rem] blur-3xl group-hover:bg-primary/[0.06] transition-opacity duration-700" />
+                <div className="relative glass-card rounded-3xl overflow-hidden min-h-[460px] flex items-center justify-center">
+                  <div className="text-center space-y-4 p-12">
+                    <div className="relative mx-auto w-36 h-36">
+                      <div className="absolute inset-0 bg-primary/[0.06] rounded-2xl rotate-6" />
+                      <div className="absolute inset-0 bg-primary/[0.06] rounded-2xl -rotate-6" />
+                      <div className="relative bg-neutral-900/80 rounded-2xl p-6 flex items-center justify-center h-full border border-neutral-800">
+                        <MonitorPlay className="w-14 h-14 text-primary/30 group-hover:text-primary/50 transition-colors duration-500" strokeWidth={1.5} />
+                      </div>
+                    </div>
+                    <p className="text-neutral-700 text-sm font-medium">Image Placeholder</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
+
       </section>
 
       {/* ─── STEPS ─── */}
@@ -184,39 +206,33 @@ function PortalWalkthrough() {
                       </motion.div>
                     </motion.div>
 
-                    {/* Right: screenshot placeholders */}
+                    {/* Right: single screenshot placeholder — same dimension as page hero cards (min-h-[460px]) */}
                     <motion.div
-                      className="flex-1"
+                      className="flex-1 min-w-0"
                       initial="hidden" whileInView="visible" viewport={{ once: true }}
                     >
-                      <div className={`grid ${step.screenshotCount === 1 ? 'grid-cols-1' : step.screenshotCount === 2 ? 'grid-cols-1 lg:grid-cols-2' : 'grid-cols-1 lg:grid-cols-2'} gap-4`}>
-                        {step.screenshotLabels.map((label, si) => (
-                          <motion.div
-                            key={si}
-                            variants={fadeUp}
-                            custom={si + 2}
-                            className={`glass-card rounded-2xl overflow-hidden group hover:border-primary/20 transition-all duration-300 ${
-                              step.screenshotCount === 3 && si === 0 ? 'lg:col-span-2' : ''
-                            }`}
-                          >
-                            {/* Placeholder area */}
-                            <div className="aspect-video bg-neutral-900/60 flex items-center justify-center relative">
-                              <div className="text-center">
-                                <Icon className="w-10 h-10 text-neutral-700 mx-auto mb-3 group-hover:text-primary/40 transition-colors" strokeWidth={1} />
-                                <p className="text-neutral-600 text-xs font-medium">Screenshot Placeholder</p>
-                              </div>
-                              {/* Decorative corner marks */}
-                              <div className="absolute top-3 left-3 w-4 h-4 border-t border-l border-neutral-700/50 rounded-tl" />
-                              <div className="absolute top-3 right-3 w-4 h-4 border-t border-r border-neutral-700/50 rounded-tr" />
-                              <div className="absolute bottom-3 left-3 w-4 h-4 border-b border-l border-neutral-700/50 rounded-bl" />
-                              <div className="absolute bottom-3 right-3 w-4 h-4 border-b border-r border-neutral-700/50 rounded-br" />
+                      {step.screenshotLabels.map((label, si) => (
+                        <motion.div
+                          key={si}
+                          variants={fadeUp}
+                          custom={si + 2}
+                          className="w-full glass-card rounded-3xl overflow-hidden group hover:border-primary/20 transition-all duration-300 min-h-[460px] flex flex-col"
+                        >
+                          <div className="flex-1 min-h-[460px] bg-neutral-900/60 flex items-center justify-center relative">
+                            <div className="text-center p-8">
+                              <Icon className="w-16 h-16 text-neutral-600 mx-auto mb-4 group-hover:text-primary/40 transition-colors" strokeWidth={1} />
+                              <p className="text-neutral-500 text-sm font-medium">Screenshot Placeholder</p>
                             </div>
-                            <div className="px-4 py-3">
-                              <p className="text-neutral-500 text-sm font-medium">{label}</p>
-                            </div>
-                          </motion.div>
-                        ))}
-                      </div>
+                            <div className="absolute top-4 left-4 w-6 h-6 border-t border-l border-neutral-700/50 rounded-tl" />
+                            <div className="absolute top-4 right-4 w-6 h-6 border-t border-r border-neutral-700/50 rounded-tr" />
+                            <div className="absolute bottom-4 left-4 w-6 h-6 border-b border-l border-neutral-700/50 rounded-bl" />
+                            <div className="absolute bottom-4 right-4 w-6 h-6 border-b border-r border-neutral-700/50 rounded-br" />
+                          </div>
+                          <div className="px-4 py-3 border-t border-neutral-800/50">
+                            <p className="text-neutral-500 text-sm font-medium">{label}</p>
+                          </div>
+                        </motion.div>
+                      ))}
                     </motion.div>
                   </div>
                 </div>
@@ -227,19 +243,19 @@ function PortalWalkthrough() {
       </section>
 
       {/* ─── FINAL CTA ─── */}
-      <section className="py-32 px-6 relative overflow-hidden">
+      <section className="py-32 px-6 lg:px-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.03] to-transparent" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
 
         <motion.div
-          className="max-w-3xl mx-auto text-center relative z-10"
+          className="container mx-auto relative z-10"
           initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
-          <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white">
+          <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl">
             Ready to<br /><span className="gradient-text">get started?</span>
           </motion.h2>
-          <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6 max-w-xl mx-auto">
-            Create your account on the DX Customer Portal and experience every step you just explored — live.
+          <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6 max-w-xl">
+            Create your account on the DX Customer Portal or app and experience every step you just explored — live.
           </motion.p>
           <motion.div variants={fadeUp} custom={2} className="flex flex-wrap justify-center gap-4 mt-10">
             <button

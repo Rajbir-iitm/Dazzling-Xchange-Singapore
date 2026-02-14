@@ -30,6 +30,7 @@ export default {
       },
       fontFamily: {
         primary: theme.typography.fontFamily.primary,
+        display: ['Syne', 'Inter', 'system-ui', 'sans-serif'],
         mono: theme.typography.fontFamily.mono
       },
       fontSize: theme.typography.fontSize,

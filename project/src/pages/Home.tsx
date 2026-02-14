@@ -66,9 +66,9 @@ function Home() {
             {/* Left */}
             <div className="space-y-8">
               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-                <span className="inline-block px-4 py-1.5 rounded-full text-sm font-medium border border-primary/30 text-primary bg-primary/5 mb-6">
-                  Licensed & Regulated in Singapore
-                </span>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight gradient-text mb-6 whitespace-nowrap">
+                  DAZZLING XCHANGE
+                </h2>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight">
                   <span className="text-white">Send Money</span><br />
                   <span className="gradient-text">Across Borders,</span><br />
@@ -80,7 +80,7 @@ function Home() {
                 className="text-neutral-400 text-lg lg:text-xl max-w-xl leading-relaxed"
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.6 }}
               >
-                Register, verify your identity, and start sending money internationally — all from one secure portal. Bank Transfer or FlexM Wallet. You choose.
+                Register, verify your identity, and start sending money internationally — via our Customer Portal or mobile app. Bank Transfer or FlexM Wallet. You choose.
               </motion.p>
 
               <motion.div
@@ -138,11 +138,11 @@ function Home() {
       {/* ─── HOW IT WORKS ─── */}
       <section className="py-28 px-6 lg:px-16">
         <div className="max-w-6xl mx-auto">
-          <motion.div className="text-center mb-20" initial="hidden" whileInView="visible" viewport={{ once: true }}>
+          <motion.div className="mb-20" initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">
               How It Works
             </motion.span>
-            <motion.h2 variants={fadeUp} custom={1} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mt-4">
+            <motion.h2 variants={fadeUp} custom={1} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mt-4 max-w-3xl">
               Four steps to your<br /><span className="gradient-text">first international transfer.</span>
             </motion.h2>
           </motion.div>
@@ -187,7 +187,7 @@ function Home() {
       <section className="py-28 px-6 lg:px-16 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
         <div className="max-w-6xl mx-auto relative z-10">
-          <motion.div className="text-center mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }}>
+          <motion.div className="mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">
               Why Dazzling Xchange
             </motion.span>
@@ -298,13 +298,13 @@ function Home() {
       {/* ─── PORTAL CTA ─── */}
       <section className="py-28 px-6 lg:px-16">
         <motion.div
-          className="max-w-5xl mx-auto text-center"
+          className="max-w-5xl mx-auto"
           initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
-          <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            See the portal<br /><span className="gradient-text">in action.</span>
+          <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight max-w-3xl">
+            See the portal & app<br /><span className="gradient-text">in action.</span>
           </motion.h2>
-          <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6 max-w-2xl mx-auto">
+          <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6 max-w-2xl">
             Walk through every screen — from registration and KYC verification to sending your first transfer. No guesswork.
           </motion.p>
           <motion.div variants={fadeUp} custom={2} className="mt-10">
@@ -322,7 +322,7 @@ function Home() {
       {/* ─── TESTIMONIALS ─── */}
       <section className="py-20 overflow-hidden">
         <motion.h2
-          className="text-3xl lg:text-4xl font-bold text-white text-center mb-16 px-6"
+          className="text-3xl lg:text-4xl font-bold text-white mb-16 px-6 lg:px-16 container mx-auto"
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
         >
           Trusted by customers <span className="gradient-text">worldwide.</span>
@@ -347,18 +347,18 @@ function Home() {
       </section>
 
       {/* ─── FINAL CTA ─── */}
-      <section className="py-32 px-6 relative overflow-hidden">
+      <section className="py-32 px-6 lg:px-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.03] to-transparent" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
 
         <motion.div
-          className="max-w-3xl mx-auto text-center relative z-10"
+          className="container mx-auto relative z-10"
           initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
-          <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white">
+          <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl">
             Ready to send your<br /><span className="gradient-text">first transfer?</span>
           </motion.h2>
-          <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6">
+          <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6 max-w-2xl">
             Join thousands of customers who trust Dazzling Xchange for their international payments.
           </motion.p>
           <motion.div variants={fadeUp} custom={2} className="flex flex-wrap justify-center gap-4 mt-10">

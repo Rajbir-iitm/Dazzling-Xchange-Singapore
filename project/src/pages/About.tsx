@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Zap, Users, Globe } from 'lucide-react';
+import { Shield, Zap, Users, Globe, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
@@ -26,37 +26,73 @@ function About() {
   return (
     <div className="bg-black min-h-screen">
       {/* ─── HERO ─── */}
-      <section className="relative pt-20 pb-32 px-6 lg:px-16 overflow-hidden">
+      <section className="relative pt-20 px-6 lg:px-16 overflow-visible pb-32">
         <div className="absolute top-20 -right-40 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
 
-        <div className="max-w-5xl mx-auto relative z-10">
-          <motion.span
-            className="inline-block px-4 py-1.5 rounded-full text-sm font-medium border border-primary/30 text-primary bg-primary/5 mb-8"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          >
-            About Dazzling Xchange
-          </motion.span>
+        <div className="container mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            {/* Left — Content */}
+            <div className="pt-8 lg:pt-16">
+              <motion.span
+                className="inline-block px-4 py-1.5 rounded-full text-sm font-medium border border-primary/30 text-primary bg-primary/5 mb-8"
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              >
+                About Dazzling Xchange
+              </motion.span>
 
-          <motion.h1
-            className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight max-w-4xl"
-            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}
-          >
-            <span className="text-white">Enabling people to move</span><br />
-            <span className="text-white">money </span>
-            <span className="gradient-text">across borders.</span>
-          </motion.h1>
+              <motion.h1
+                className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight"
+                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}
+              >
+                <span className="text-white">Enabling people to move</span><br />
+                <span className="text-white">money </span>
+                <span className="gradient-text">across borders.</span>
+              </motion.h1>
 
-          <motion.p
-            className="text-neutral-400 text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-          >
-            Dazzling Xchange is a licensed digital remittance platform based in Singapore. We make it simple for individuals and businesses to register, verify, and send money internationally — through a secure, self-service Customer Portal.
-          </motion.p>
+              <motion.p
+                className="text-neutral-400 text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed"
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+              >
+                Dazzling Xchange is a licensed digital remittance platform based in Singapore. We make it simple for individuals and businesses to register, verify, and send money internationally — through our secure Customer Portal or mobile app.
+              </motion.p>
+
+              <motion.div
+                className="mt-10 flex"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+              >
+                <ChevronDown className="w-6 h-6 text-primary animate-bounce" />
+              </motion.div>
+            </div>
+
+            {/* Right — Visual card that overlaps into next section */}
+            <motion.div
+              className="relative lg:translate-y-8"
+              initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-primary/[0.03] rounded-[2rem] blur-3xl group-hover:bg-primary/[0.06] transition-opacity duration-700" />
+                <div className="relative glass-card rounded-3xl overflow-hidden min-h-[460px] flex items-center justify-center">
+                  <div className="text-center space-y-6 p-12">
+                    <div className="relative mx-auto w-40 h-40">
+                      <div className="absolute inset-0 bg-primary/[0.06] rounded-full scale-150 animate-float" />
+                      <div className="absolute inset-0 bg-primary/[0.04] rounded-2xl rotate-12 translate-x-3 -translate-y-2" />
+                      <div className="absolute inset-0 bg-primary/[0.04] rounded-2xl -rotate-12 -translate-x-3 translate-y-2" />
+                      <div className="relative bg-neutral-900/80 rounded-2xl p-6 flex items-center justify-center h-full border border-neutral-800">
+                        <Globe className="w-16 h-16 text-primary/30 group-hover:text-primary/50 transition-colors duration-500" strokeWidth={1.5} />
+                      </div>
+                    </div>
+                    <p className="text-neutral-700 text-sm font-medium">Image Placeholder</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ─── MISSION ─── */}
-      <section className="py-28 px-6 lg:px-16 relative">
+      <section className="pt-8 pb-28 px-6 lg:px-16 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
         <div className="max-w-6xl mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
@@ -106,7 +142,7 @@ function About() {
       {/* ─── METRICS ─── */}
       <section className="py-20 relative" ref={statsRef}>
         <div className="divider-gradient mb-16" />
-        <div className="max-w-6xl mx-auto px-6 text-center">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.span
             className="text-primary text-sm font-semibold tracking-widest uppercase"
             initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
@@ -150,7 +186,7 @@ function About() {
       <section className="py-28 px-6 lg:px-16">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            className="text-center mb-16"
+            className="mb-16"
             initial="hidden" whileInView="visible" viewport={{ once: true }}
           >
             <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">

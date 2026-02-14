@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Smartphone, ScanFace, Wallet, Send, BarChart3, Users, Building, CreditCard } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Smartphone, ScanFace, Wallet, Send, BarChart3, Users, Building, CreditCard, ChevronDown } from 'lucide-react';
 import Footer from '../components/Footer';
 import { useSalesModalStore } from '../stores/salesModalStore';
 
@@ -49,31 +49,67 @@ function Services() {
   return (
     <div className="bg-black min-h-screen">
       {/* ─── HERO ─── */}
-      <section className="relative pt-20 pb-28 px-6 lg:px-16 overflow-hidden">
-        <div className="absolute top-10 left-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
+      <section className="relative pt-20 px-6 lg:px-16 overflow-visible pb-32">
+        <div className="absolute top-10 -right-40 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl" />
 
-        <div className="max-w-5xl mx-auto relative z-10">
-          <motion.span
-            className="inline-block px-4 py-1.5 rounded-full text-sm font-medium border border-primary/30 text-primary bg-primary/5 mb-8"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-          >
-            Our Services
-          </motion.span>
+        <div className="container mx-auto relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            {/* Left — Content */}
+            <div className="pt-8 lg:pt-16">
+              <motion.span
+                className="inline-block px-4 py-1.5 rounded-full text-sm font-medium border border-primary/30 text-primary bg-primary/5 mb-8"
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              >
+                Our Services
+              </motion.span>
 
-          <motion.h1
-            className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight"
-            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}
-          >
-            <span className="text-white">One portal.</span><br />
-            <span className="gradient-text">Complete control.</span>
-          </motion.h1>
+              <motion.h1
+                className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight"
+                initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}
+              >
+                <span className="text-white">One portal. One app.</span><br />
+                <span className="gradient-text">Complete control.</span>
+              </motion.h1>
 
-          <motion.p
-            className="text-neutral-400 text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed"
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-          >
-            From registration and identity verification to international transfers and transaction management — everything you need, designed for individuals and businesses.
-          </motion.p>
+              <motion.p
+                className="text-neutral-400 text-lg lg:text-xl mt-8 max-w-2xl leading-relaxed"
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+              >
+                From registration and identity verification to international transfers and transaction management — everything you need, designed for individuals and businesses.
+              </motion.p>
+
+              <motion.div
+                className="mt-10 flex"
+                initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+              >
+                <ChevronDown className="w-6 h-6 text-primary animate-bounce" />
+              </motion.div>
+            </div>
+
+            {/* Right — Visual card that overlaps into next section */}
+            <motion.div
+              className="relative lg:translate-y-8"
+              initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-primary/[0.03] rounded-[2rem] blur-3xl group-hover:bg-primary/[0.06] transition-opacity duration-700" />
+                <div className="relative glass-card rounded-3xl overflow-hidden min-h-[460px] flex items-center justify-center">
+                  <div className="text-center space-y-6 p-12">
+                    <div className="relative mx-auto w-40 h-40">
+                      <div className="absolute inset-0 bg-primary/[0.06] rounded-full scale-150 animate-float-delayed" />
+                      <div className="absolute inset-2 bg-primary/[0.05] rounded-2xl rotate-6" />
+                      <div className="absolute inset-2 bg-primary/[0.05] rounded-2xl -rotate-6" />
+                      <div className="relative bg-neutral-900/80 rounded-2xl p-6 flex items-center justify-center h-full border border-neutral-800">
+                        <Building className="w-16 h-16 text-primary/30 group-hover:text-primary/50 transition-colors duration-500" strokeWidth={1.5} />
+                      </div>
+                    </div>
+                    <p className="text-neutral-700 text-sm font-medium">Image Placeholder</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -197,7 +233,7 @@ function Services() {
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div className="text-center mb-20" initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">
-              Portal Capabilities
+                Portal & App Capabilities
             </motion.span>
             <motion.h2 variants={fadeUp} custom={1} className="text-3xl lg:text-5xl font-bold text-white mt-4">
               Manage, monitor, <span className="gradient-text">stay in control.</span>
@@ -266,7 +302,7 @@ function Services() {
                 <Wallet className="w-10 h-10 text-primary" strokeWidth={1.5} />
                 <h3 className="text-2xl lg:text-4xl font-bold text-white">Wallet & Balance</h3>
                 <p className="text-neutral-400 text-lg leading-relaxed">
-                  Activated after KYC verification, your FlexM digital wallet shows your real-time balance and transaction history. Top up via PayNow QR — scan, pay, submit your reference, and your funds are credited within 30 minutes. Insufficient balance? The portal automatically prompts you to top up.
+                  Activated after KYC verification, your FlexM digital wallet shows your real-time balance and transaction history. Top up via PayNow QR — scan, pay, submit your reference, and your funds are credited within 30 minutes. Insufficient balance? The portal or app automatically prompts you to top up.
                 </p>
                 <div className="flex flex-wrap gap-3 pt-2">
                   {['PayNow Top-Up', 'Real-Time Balance', '30-Min Credit', 'Auto Prompts'].map(tag => (
@@ -287,17 +323,17 @@ function Services() {
       </section>
 
       {/* ─── CTA ─── */}
-      <section className="py-32 px-6 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+      <section className="py-32 px-6 lg:px-16 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
 
         <motion.div
-          className="max-w-3xl mx-auto text-center relative z-10"
+          className="container mx-auto relative z-10"
           initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
-          <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white">
+          <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl">
             Experience it <span className="gradient-text">yourself.</span>
           </motion.h2>
-          <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6">
+          <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6 max-w-2xl">
             Create your account and start sending money internationally in minutes.
           </motion.p>
           <motion.div variants={fadeUp} custom={2} className="flex flex-wrap justify-center gap-4 mt-10">
