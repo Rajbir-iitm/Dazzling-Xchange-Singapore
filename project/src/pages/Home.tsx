@@ -63,15 +63,15 @@ function Home() {
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-1/4 -right-32 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-float-delayed" />
 
-        <div className="container mx-auto px-6 lg:px-16 py-20 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-16 py-12 sm:py-20 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-20 items-center">
             {/* Left */}
             <div className="space-y-8">
               <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-tight gradient-text mb-6 whitespace-nowrap">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight gradient-text mb-4 sm:mb-6">
                   {t('home.brand')}
                 </h2>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-tight">
                   <span className="text-white">{t('home.hero.line1')}</span><br />
                   <span className="gradient-text">{t('home.hero.line2')}</span><br />
                   <span className="text-white">{t('home.hero.line3')}</span>
@@ -86,19 +86,19 @@ function Home() {
               </motion.p>
 
               <motion.div
-                className="flex flex-wrap gap-4"
+                className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4"
                 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }}
               >
                 <button
                   onClick={() => window.open('https://customer.dazzlingxchange.com/', '_blank')}
-                  className="group flex items-center gap-2 px-8 py-4 bg-primary text-neutral-950 rounded-full font-semibold text-base hover:shadow-[0_0_30px_rgba(0,208,132,0.4)] transition-all duration-300 hover:scale-[1.02]"
+                  className="group flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 bg-primary text-neutral-950 rounded-full font-semibold text-sm sm:text-base hover:shadow-[0_0_30px_rgba(0,208,132,0.4)] transition-all duration-300 hover:scale-[1.02] w-full sm:w-auto"
                 >
                   {t('hero.login')}
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <button
                   onClick={openSalesModal}
-                  className="px-8 py-4 border border-neutral-700 text-white rounded-full font-medium text-base hover:border-primary/50 hover:text-primary transition-all duration-300"
+                  className="px-6 sm:px-8 py-3 sm:py-4 border border-neutral-700 text-white rounded-full font-medium text-sm sm:text-base hover:border-primary/50 hover:text-primary transition-all duration-300 w-full sm:w-auto"
                 >
                   {t('hero.sales')}
                 </button>
@@ -138,7 +138,7 @@ function Home() {
       </section>
 
       {/* ─── HOW IT WORKS ─── */}
-      <section className="py-28 px-6 lg:px-16">
+      <section className="py-16 sm:py-28 px-4 sm:px-6 lg:px-16">
         <div className="max-w-6xl mx-auto">
           <motion.div className="mb-20" initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <motion.span variants={fadeUp} custom={0} className="text-primary text-sm font-semibold tracking-widest uppercase">
@@ -186,7 +186,7 @@ function Home() {
       </section>
 
       {/* ─── BENTO FEATURES ─── */}
-      <section className="py-28 px-6 lg:px-16 relative">
+      <section className="py-16 sm:py-28 px-4 sm:px-6 lg:px-16 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.02] to-transparent" />
         <div className="max-w-6xl mx-auto relative z-10">
           <motion.div className="mb-16" initial="hidden" whileInView="visible" viewport={{ once: true }}>
@@ -270,7 +270,7 @@ function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5" />
         <div className="divider-gradient mb-16" />
 
-        <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 text-center relative z-10">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12 text-center relative z-10">
           {[
             { value: 130, prefix: '$', suffix: 'B+', label: t('home.stats.transfers') },
             { value: 1, suffix: 'M+', label: t('home.stats.users') },
@@ -282,7 +282,7 @@ function Home() {
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.5 }} viewport={{ once: true }}
             >
-              <p className="text-4xl lg:text-5xl font-bold gradient-text">
+              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold gradient-text">
                 {statsInView ? (
                   <>{stat.prefix}<CountUp end={stat.value} duration={2} delay={i * 0.2} />{stat.suffix}</>
                 ) : (
@@ -298,7 +298,7 @@ function Home() {
       </section>
 
       {/* ─── PORTAL CTA ─── */}
-      <section className="py-28 px-6 lg:px-16">
+      <section className="py-16 sm:py-28 px-4 sm:px-6 lg:px-16">
         <motion.div
           className="max-w-5xl mx-auto"
           initial="hidden" whileInView="visible" viewport={{ once: true }}
@@ -349,7 +349,7 @@ function Home() {
       </section>
 
       {/* ─── FINAL CTA ─── */}
-      <section className="py-32 px-6 lg:px-16 relative overflow-hidden">
+      <section className="py-16 sm:py-32 px-4 sm:px-6 lg:px-16 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/[0.03] to-transparent" />
         <div className="absolute top-1/2 left-1/4 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
 
@@ -363,17 +363,17 @@ function Home() {
           <motion.p variants={fadeUp} custom={1} className="text-neutral-400 text-lg mt-6 max-w-2xl mx-auto">
             {t('home.cta.description')}
           </motion.p>
-          <motion.div variants={fadeUp} custom={2} className="flex flex-wrap justify-center gap-4 mt-10">
+          <motion.div variants={fadeUp} custom={2} className="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-4 mt-10">
             <button
               onClick={() => window.open('https://customer.dazzlingxchange.com/', '_blank')}
-              className="group flex items-center gap-2 px-10 py-5 bg-primary text-neutral-950 rounded-full font-semibold text-lg hover:shadow-[0_0_40px_rgba(0,208,132,0.4)] transition-all duration-300 hover:scale-[1.02]"
+              className="group flex items-center justify-center gap-2 px-8 sm:px-10 py-4 sm:py-5 bg-primary text-neutral-950 rounded-full font-semibold text-base sm:text-lg hover:shadow-[0_0_40px_rgba(0,208,132,0.4)] transition-all duration-300 hover:scale-[1.02] w-full sm:w-auto"
             >
               {t('home.cta.portal')}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <button
               onClick={openSalesModal}
-              className="px-10 py-5 border border-neutral-700 text-white rounded-full font-medium text-lg hover:border-primary/50 hover:text-primary transition-all duration-300"
+              className="px-8 sm:px-10 py-4 sm:py-5 border border-neutral-700 text-white rounded-full font-medium text-base sm:text-lg hover:border-primary/50 hover:text-primary transition-all duration-300 w-full sm:w-auto"
             >
               {t('home.cta.contact')}
             </button>

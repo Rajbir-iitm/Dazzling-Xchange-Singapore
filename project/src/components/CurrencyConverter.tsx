@@ -243,10 +243,10 @@ const CurrencyConverter: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Currency Selectors */}
-        <div className="flex items-end justify-center gap-4 mb-8">
+        {/* Currency Selectors — stack on mobile, row on larger screens */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-end justify-center gap-4 mb-8">
           {/* From Currency Box */}
-          <div className="flex-1 max-w-xs">
+          <div className="flex-1 w-full sm:max-w-xs">
             <label className="block text-neutral-400 text-xs mb-2 font-primary uppercase tracking-wide">{t('converter.from')}</label>
             <div className="bg-gradient-to-br from-neutral-800/40 to-neutral-900/40 border border-neutral-700/50 rounded-xl p-4 hover:border-primary/50 transition-all">
               <select
@@ -267,7 +267,7 @@ const CurrencyConverter: React.FC = () => {
           {/* Swap Button */}
           <button
             onClick={handleSwapCurrencies}
-            className="p-3 bg-primary hover:bg-primary/80 rounded-full transition-all duration-300 hover:scale-110 group mb-1"
+            className="p-3 bg-primary hover:bg-primary/80 rounded-full transition-all duration-300 hover:scale-110 group self-center sm:mb-1 flex-shrink-0"
             aria-label="Swap currencies"
           >
             <svg
@@ -286,7 +286,7 @@ const CurrencyConverter: React.FC = () => {
           </button>
 
           {/* To Currency Box */}
-          <div className="flex-1 max-w-xs">
+          <div className="flex-1 w-full sm:max-w-xs">
             <label className="block text-neutral-400 text-xs mb-2 font-primary uppercase tracking-wide">{t('converter.to')}</label>
             <div className="bg-gradient-to-br from-neutral-800/40 to-neutral-900/40 border border-neutral-700/50 rounded-xl p-4 hover:border-primary/50 transition-all">
               <select
@@ -333,7 +333,7 @@ const CurrencyConverter: React.FC = () => {
                 transition={{ duration: 0.3 }}
                 className="space-y-2"
               >
-                <div className="text-primary text-6xl font-extrabold font-primary">
+                <div className="text-primary text-4xl sm:text-5xl md:text-6xl font-extrabold font-primary">
                   <CountUp
                     end={exchangeRate.rate}
                     decimals={4}
@@ -363,9 +363,9 @@ const CurrencyConverter: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-white text-2xl font-bold font-primary">{t('converter.historicalRates')}</h2>
+            <h2 className="text-white text-xl sm:text-2xl font-bold font-primary">{t('converter.historicalRates')}</h2>
             <p className="text-neutral-400 text-sm font-primary">
               {fromCurrency} to {toCurrency} {t('converter.trend')}
             </p>

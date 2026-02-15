@@ -30,7 +30,7 @@ function About() {
   return (
     <div className="bg-black min-h-screen">
       {/* ─── HERO ─── */}
-      <section className="relative pt-20 px-6 lg:px-16 overflow-visible pb-32">
+      <section className="relative pt-8 sm:pt-20 px-4 sm:px-6 lg:px-16 overflow-visible pb-16 sm:pb-32">
         <div className="absolute top-20 -right-40 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
 
         <div className="container mx-auto relative z-10">
@@ -45,7 +45,7 @@ function About() {
               </motion.span>
 
               <motion.h1
-                className="text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold leading-[1.05] tracking-tight"
                 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.7 }}
               >
                 <span className="text-white">{t('about.hero.line1')}</span><br />

@@ -31,6 +31,7 @@
 }
 
 /* Ensure content is fully visible and properly contained */
+/* Override Bootstrap reboot to preserve dark theme */
 html, body {
   overflow-x: hidden;
   -ms-overflow-style: none;  /* IE and Edge */
@@ -39,9 +40,9 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  min-width: 320px; /* Prevent content from being too narrow */
+  min-width: 280px; /* Prevent content from being too narrow on phones */
   font-family: var(--font-family-primary);
-  background: black;
+  background: black !important;
 }
 
 html::-webkit-scrollbar,

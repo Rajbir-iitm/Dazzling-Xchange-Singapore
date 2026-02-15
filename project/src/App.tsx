@@ -20,12 +20,14 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen bg-black w-full overflow-x-hidden min-w-[320px] font-primary flex m-0 p-0">
-        {/* Sidebar Component */}
-        <Sidebar onOpenSettings={openSettings} />
+      <div className="min-h-screen bg-black w-full overflow-x-hidden min-w-[280px] font-primary flex flex-col md:flex-row m-0 p-0">
+        {/* Sidebar Component — top bar on mobile, left rail on desktop */}
+        <div className="shrink-0 w-full md:w-auto">
+          <Sidebar onOpenSettings={openSettings} />
+        </div>
         
-        {/* Main Content — offset by collapsed sidebar width (60px) */}
-        <main className="flex-1 w-full max-w-full overflow-x-hidden bg-black md:ml-[60px]">
+        {/* Main Content — padding for mobile top bar, offset by sidebar on desktop */}
+        <main className="flex-1 w-full max-w-full overflow-x-hidden bg-black pt-16 md:pt-0 md:ml-[60px]">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />

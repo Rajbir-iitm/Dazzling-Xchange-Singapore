@@ -118,16 +118,24 @@ export const MobileSidebar = ({
     <>
       <div
         className={cn(
-          "h-16 px-4 py-4 flex flex-row md:hidden items-center justify-between bg-black w-full"
+          "h-16 px-4 py-2 flex flex-row md:hidden items-center justify-between bg-black w-full fixed top-0 left-0 right-0 z-50 border-b border-neutral-800"
         )}
         {...props}
       >
-        <div className="flex justify-end z-20 w-full">
-          <IconMenu2
-            className="text-white w-8 h-8"
-            onClick={() => setOpen(!open)}
+        <Link to="/" className="flex items-center shrink-0">
+          <img 
+            src="https://i.ibb.co/VcB3xpz1/Untitled-design-2025-07-02-T031441-104.png" 
+            alt="Dazzling Xchange" 
+            className="w-10 h-10 object-contain"
           />
-        </div>
+        </Link>
+        <button
+          onClick={() => setOpen(!open)}
+          className="p-2 -m-2 text-white hover:text-[#16d68f] transition-colors"
+          aria-label="Open menu"
+        >
+          <IconMenu2 className="w-8 h-8" />
+        </button>
         <AnimatePresence>
           {open && (
             <motion.div
@@ -139,13 +147,14 @@ export const MobileSidebar = ({
                 ease: "easeInOut",
               }}
               className={cn(
-                "fixed h-full w-full inset-0 bg-black p-10 z-[100] flex flex-col justify-between",
+                "fixed h-full w-full inset-0 bg-black p-6 sm:p-10 z-[100] flex flex-col justify-between overflow-y-auto",
                 className
               )}
             >
               <div
-                className="absolute right-10 top-10 z-50 text-white"
+                className="absolute right-4 top-4 sm:right-10 sm:top-10 z-50 text-white p-2 -m-2 cursor-pointer"
                 onClick={() => setOpen(!open)}
+                aria-label="Close menu"
               >
                 <IconX className="w-8 h-8" />
               </div>
