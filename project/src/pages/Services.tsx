@@ -338,7 +338,7 @@ function Services() {
       <section className="py-32 px-6 lg:px-16 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
         <motion.div
-          className="container mx-auto relative z-10"
+          className="container mx-auto relative z-10 flex flex-col items-center text-center"
           initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
           <motion.h2 variants={fadeUp} custom={0} className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-3xl">
