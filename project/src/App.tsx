@@ -11,6 +11,7 @@ import TermsOfUse from './pages/TermsOfUse';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import PortalWalkthrough from './pages/PortalWalkthrough';
 import SalesModal from './components/SalesModal';
+import FloatingSupportButton from './components/FloatingSupportButton';
 
 function App() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -45,6 +46,9 @@ function App() {
         
         {/* Sales Modal */}
         <SalesModal />
+
+        {/* Floating support button — links to the ResolveDesk customer portal */}
+        <FloatingSupportButton />
       </div>
     </Router>
   );
